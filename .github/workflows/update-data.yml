@@ -1,0 +1,72 @@
+name: Update News Data & Deploy
+
+on:
+  schedule:
+    # 毎朝6:00 JST (UTC 21:00 前日)
+    - cron: '0 21 * * *'
+  workflow_dispatch: {}  # 手動実行
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Fetch & summarize news
+        run: npx tsx scripts/run.ts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
+
+      - name: Commit updated data
+        run: |
+          git config user.name "oshi-bot"
+          git config user.email "actions@github.com"
+          git add data/news.json
+          git diff --staged --quiet || git commit -m "chore: update news data $(date +'%Y-%m-%d')"
+          git push
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main  # update ジョブがコミットした後の最新を取得
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build Next.js static export
+        run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out/
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
