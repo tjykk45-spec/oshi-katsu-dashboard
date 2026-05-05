@@ -8,10 +8,10 @@ import { fetchAllNews } from "./fetch-news.js";
 import { summarizeArticles } from "./summarize.js";
 import { NewsDataSchema, type Article } from "./schema.js";
 import { UserFacingError } from "./errors.js";
+import { KEEP_DAYS } from "./config.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, "../data/news.json");
-const KEEP_DAYS = 30;
 
 async function main() {
   const apiKey = process.env.GEMINI_API_KEY;

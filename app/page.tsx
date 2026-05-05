@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 import { NewsDataSchema, type Article } from "@/scripts/schema";
+import { MAX_PER_GROUP } from "@/scripts/config";
 import GroupSection from "@/components/GroupSection";
 import PetalCanvas from "@/components/PetalCanvas";
 
@@ -39,7 +40,14 @@ export default function Page() {
     : "–";
 
   const byGroup = Object.fromEntries(
-    GROUPS.map((g) => [g.id, articles.filter((a) => a.group === g.id)])
+    GROUPS.map((g) => [
+      g.id,
+      // 各グループ最大 MAX_PER_GROUP 件まで表示（日付が新しい順）
+      articles
+        .filter((a) => a.group === g.id)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, MAX_PER_GROUP),
+    ])
   );
   const totalCount = articles.length;
 

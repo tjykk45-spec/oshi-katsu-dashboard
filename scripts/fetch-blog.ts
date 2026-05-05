@@ -97,8 +97,10 @@ async function scrapesakurazakaBlog(member: typeof MEMBERS[0], existingUrls: Set
 
   $("li.box").each((_, el) => {
     // ct パラメータはサーバー側で効かないため、テキスト内にメンバー名があるか確認して絞り込む
-    const boxText = $(el).text();
-    if (!boxText.includes(member.name)) return;
+    // 注: ページ上は「村井 優」のように空白が入る場合があるため、両者の空白を除去して比較する
+    const boxText = $(el).text().replace(/\s/g, "");
+    const targetName = member.name.replace(/\s/g, "");
+    if (!boxText.includes(targetName)) return;
 
     const href = $(el).find("a").first().attr("href") ?? "";
     const url = href.startsWith("http") ? href : BASE.sakurazaka46 + href;
@@ -123,8 +125,9 @@ async function scrapeHinatazakaBlog(member: typeof MEMBERS[0], existingUrls: Set
 
   $("div.p-blog-article").each((_, el) => {
     // ct パラメータがサーバー側で効かない場合に備え、メンバー名で絞り込む
-    const boxText = $(el).text();
-    if (!boxText.includes(member.name)) return;
+    const boxText = $(el).text().replace(/\s/g, "");
+    const targetName = member.name.replace(/\s/g, "");
+    if (!boxText.includes(targetName)) return;
 
     const href = $(el).find("a.c-button-blog-detail").attr("href") ?? "";
     const url = href.startsWith("http") ? href : BASE.hinatazaka46 + href;
