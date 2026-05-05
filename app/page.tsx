@@ -11,11 +11,11 @@ const GROUPS = [
 ];
 
 const MEMBERS = [
-  { name: "遠藤さくら", group: "nogi", avatar: "/avatars/endo-sakura.jpg" },
-  { name: "池田瑛紗",   group: "nogi", avatar: "/avatars/ikeda-teresa.jpg" },
-  { name: "村井優",     group: "saku", avatar: "/avatars/murai-yu.jpg" },
-  { name: "石森璃花",   group: "saku", avatar: "/avatars/ishimori-rika.jpg" },
-  { name: "小坂菜緒",   group: "hina", avatar: "/avatars/kosaka-nao.jpg" },
+  { name: "遠藤さくら", group: "nogi", avatar: "avatars/endo-sakura.jpg" },
+  { name: "池田瑛紗",   group: "nogi", avatar: "avatars/ikeda-teresa.jpg" },
+  { name: "村井優",     group: "saku", avatar: "avatars/murai-yu.jpg" },
+  { name: "石森璃花",   group: "saku", avatar: "avatars/ishimori-rika.jpg" },
+  { name: "小坂菜緒",   group: "hina", avatar: "avatars/kosaka-nao.jpg" },
 ];
 
 function loadArticles(): Article[] {
