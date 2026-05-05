@@ -11,7 +11,7 @@ export interface MemberConfig {
   name: string;
   group: GroupId;
   avatar: string; // public/avatars/ のファイル名
-  blogRssUrl: string | null;
+  blogListUrl: string | null; // ブログ一覧ページURL
 }
 
 export interface SourceConfig {
@@ -38,50 +38,51 @@ export const MEMBERS: MemberConfig[] = [
     name: "遠藤さくら",
     group: "nogizaka46",
     avatar: "endo-sakura.jpg",
-    // 乃木坂46 メンバーブログはAmeba: https://ameblo.jp/nogizaka46-<member>/
-    blogRssUrl: "https://rssblog.ameba.jp/nogizaka46-endosakura/rss20.xml",
+    blogListUrl: "https://www.nogizaka46.com/s/n46/api/list/blog?ct=48006&rw=5",
   },
   {
     id: "ikeda-teresa",
     name: "池田瑛紗",
     group: "nogizaka46",
     avatar: "ikeda-teresa.jpg",
-    blogRssUrl: "https://rssblog.ameba.jp/nogizaka46-ikedateresa/rss20.xml",
+    blogListUrl: "https://www.nogizaka46.com/s/n46/api/list/blog?ct=55397&rw=5",
   },
   {
     id: "murai-yu",
     name: "村井優",
     group: "sakurazaka46",
     avatar: "murai-yu.jpg",
-    blogRssUrl: "https://rssblog.ameba.jp/sakurazaka46-muraiyuu/rss20.xml",
+    blogListUrl: "https://sakurazaka46.com/s/s46/diary/blog/list?ima=0000&ct=67",
   },
   {
     id: "ishimori-rika",
     name: "石森璃花",
     group: "sakurazaka46",
     avatar: "ishimori-rika.jpg",
-    blogRssUrl: "https://rssblog.ameba.jp/sakurazaka46-ishimoririka/rss20.xml",
+    // ct は石森璃花のメンバーID（ブログ一覧ページから確認）
+    blogListUrl: "https://sakurazaka46.com/s/s46/diary/blog/list?ima=0000&ct=59",
   },
   {
     id: "kosaka-nao",
     name: "小坂菜緒",
     group: "hinatazaka46",
     avatar: "kosaka-nao.jpg",
-    blogRssUrl: "https://rssblog.ameba.jp/hinatazaka46-kosakanao/rss20.xml",
+    blogListUrl: "https://www.hinatazaka46.com/s/official/diary/member/list?ct=14",
   },
 ];
 
-// 各グループ公式サイトのニュース一覧スクレイピング設定
+// 各グループ公式サイトのニュース設定
 export const NEWS_SOURCES: SourceConfig[] = [
   {
     group: "nogizaka46",
     label: "乃木坂46公式",
-    newsUrl: "https://www.nogizaka46.com/s/n46/news/list",
+    // JSON APIで取得（最新50件）
+    newsUrl: "https://www.nogizaka46.com/s/n46/api/list/news_v2?rw=50",
     newsSelector: {
-      list: ".m-news__item",
-      title: ".m-news__item__text",
-      link: "a",
-      date: ".m-news__item__date",
+      list: "",       // JSON APIのため未使用
+      title: "",
+      link: "",
+      date: null,
     },
   },
   {
@@ -89,10 +90,10 @@ export const NEWS_SOURCES: SourceConfig[] = [
     label: "櫻坂46公式",
     newsUrl: "https://sakurazaka46.com/s/s46/news/list",
     newsSelector: {
-      list: ".news-list li",
-      title: ".text",
-      link: "a",
-      date: ".date",
+      list: "a[href*='/news/detail/']",
+      title: ".title",
+      link: "",       // 親要素がa
+      date: ".date.wf-a",
     },
   },
   {
@@ -100,10 +101,10 @@ export const NEWS_SOURCES: SourceConfig[] = [
     label: "日向坂46公式",
     newsUrl: "https://www.hinatazaka46.com/s/official/news/list",
     newsSelector: {
-      list: ".m-news__item",
-      title: ".m-news__item__text",
+      list: ".p-news__list__item, li.p-news__item, .p-news-article",
+      title: ".c-news__title, .p-news__text",
       link: "a",
-      date: ".m-news__item__date",
+      date: ".c-news__date, .p-news__date",
     },
   },
 ];

@@ -1,10 +1,11 @@
+import "dotenv/config.js";
 import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { GoogleGenAI } from "@google/genai";
-import { fetchAllBlogs } from "./fetch-rss.js";
+import { fetchAllBlogs } from "./fetch-blog.js";
 import { fetchAllNews } from "./fetch-news.js";
-import { summarizeArticle } from "./summarize.js";
+import { summarizeArticles } from "./summarize.js";
 import { NewsDataSchema, type Article } from "./schema.js";
 import { UserFacingError } from "./errors.js";
 
@@ -46,15 +47,8 @@ async function main() {
 
   console.log(`[run] 新規記事: ${rawArticles.length}件`);
 
-  // 直列でGemini要約（レート制限を考慮）
-  const newArticles: Article[] = [];
-  for (const raw of rawArticles) {
-    const article = await summarizeArticle(raw, ai);
-    if (article) newArticles.push(article);
-    // Gemini無料枠: 15 RPM → 4秒待機
-    await new Promise((r) => setTimeout(r, 4_000));
-  }
-
+  // バッチ処理でGemini要約（5件×1コール → API使用量1/5）
+  const newArticles = await summarizeArticles(rawArticles, ai);
   console.log(`[run] 要約完了: ${newArticles.length}件`);
 
   // 30日以内のデータのみ保持
