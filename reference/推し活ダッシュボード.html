@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>推し活ニュース ✦ 坂道46</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* 乃木坂 — 桜×紫 */
+      --nogi-h: 300;
+      --nogi-main:   oklch(62% 0.18 310);
+      --nogi-soft:   oklch(94% 0.04 310);
+      --nogi-glass:  oklch(97% 0.03 310 / 0.72);
+      --nogi-bloom:  oklch(85% 0.12 320);
+      --nogi-text:   oklch(38% 0.14 310);
+
+      /* 櫻坂 — 桜ピンク×紅 */
+      --saku-main:   oklch(60% 0.22 0);
+      --saku-soft:   oklch(95% 0.04 5);
+      --saku-glass:  oklch(97% 0.04 5 / 0.72);
+      --saku-bloom:  oklch(85% 0.14 10);
+      --saku-text:   oklch(38% 0.18 5);
+
+      /* 日向坂 — 向日葵×水色 */
+      --hina-main:   #7cc7e8;
+      --hina-soft:   oklch(96% 0.04 210);
+      --hina-glass:  oklch(98% 0.04 210 / 0.72);
+      --hina-bloom:  oklch(88% 0.12 200);
+      --hina-text:   oklch(42% 0.13 210);
+
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-min: 'Shippori Mincho', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    /* ─── PAGE BACKGROUND ─── */
+    body {
+      font-family: var(--font-jp);
+      background: #fdf7f9;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Gradient wash */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%,   oklch(93% 0.06 320 / 0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 90% 15%,  oklch(93% 0.07 5   / 0.5) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 40% at 50% 100%, oklch(95% 0.06 85  / 0.4) 0%, transparent 60%),
+        linear-gradient(160deg, #fff8fc 0%, #fff4f6 40%, #fffaf2 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── PETAL CANVAS ─── */
+    #petal-canvas {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+    }
+
+    /* ─── LAYOUT ─── */
+    .page-wrap {
+      position: relative; z-index: 2;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px 80px;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky; top: 0; z-index: 30;
+      margin: 0 -16px;
+      padding: 0 16px;
+      background: oklch(100% 0 0 / 0.82);
+      backdrop-filter: blur(18px) saturate(1.5);
+      -webkit-backdrop-filter: blur(18px) saturate(1.5);
+      border-bottom: 1px solid oklch(88% 0.04 320 / 0.5);
+    }
+
+    .header-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0 8px;
+    }
+
+    .header-title {
+      display: flex; align-items: baseline; gap: 8px;
+    }
+    .header-title h1 {
+      font-family: var(--font-min);
+      font-size: 18px; font-weight: 700;
+      background: linear-gradient(120deg, var(--nogi-main), var(--saku-main), var(--hina-main));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.06em;
+    }
+    .header-title .subtitle {
+      font-size: 10px; color: oklch(60% 0 0); letter-spacing: 0.1em;
+    }
+
+    .header-meta {
+      display: flex; align-items: center; gap-row: 0;
+    }
+    .update-badge {
+      font-size: 10px; color: oklch(55% 0 0);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: oklch(65% 0.22 145);
+      box-shadow: 0 0 0 0 oklch(65% 0.22 145 / 0.5);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 oklch(65% 0.22 145 / 0.5); }
+      50%       { box-shadow: 0 0 0 5px oklch(65% 0.22 145 / 0); }
+    }
+
+    /* Group nav tabs */
+    .group-nav {
+      display: flex; gap: 6px;
+      padding: 0 0 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .group-nav::-webkit-scrollbar { display: none; }
+
+    .gnav-btn {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 12px 5px 8px;
+      border-radius: 20px;
+      font-size: 11px; font-weight: 700;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      letter-spacing: 0.04em;
+    }
+    .gnav-btn:hover { transform: translateY(-1px); }
+    .gnav-btn.nogi {
+      background: linear-gradient(135deg, oklch(86% 0.10 310), oklch(91% 0.07 330));
+      color: var(--nogi-text);
+      border-color: oklch(80% 0.10 310);
+    }
+    .gnav-btn.saku {
+      background: linear-gradient(135deg, oklch(88% 0.10 5), oklch(92% 0.06 15));
+      color: var(--saku-text);
+      border-color: oklch(82% 0.10 5);
+    }
+    .gnav-btn.hina {
+      background: linear-gradient(135deg, #e8f7fb, #daf4f9);
+      color: #2c7a96;
+      border-color: #b8e5f0;
+    }
+    .gnav-icon { font-size: 14px; }
+
+    /* ─── MEMBER HERO STRIP ─── */
+    .member-strip {
+      display: flex; gap: 8px;
+      padding: 18px 0 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .member-strip::-webkit-scrollbar { display: none; }
+
+    .member-chip {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      cursor: default;
+    }
+    .member-avatar {
+      width: 66px; height: 66px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .member-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+    }
+    .member-avatar::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      box-shadow: inset 0 -6px 14px oklch(0% 0 0 / 0.10);
+    }
+    .member-avatar.nogi {
+      background: linear-gradient(135deg, oklch(88% 0.12 310), oklch(82% 0.16 330));
+      border: 3px solid oklch(78% 0.14 310);
+      box-shadow: 0 0 0 2px oklch(92% 0.07 310);
+    }
+    .member-avatar.saku {
+      background: linear-gradient(135deg, oklch(86% 0.14 355), oklch(82% 0.18 10));
+      border: 3px solid oklch(76% 0.16 5);
+      box-shadow: 0 0 0 2px oklch(92% 0.07 5);
+    }
+    .member-avatar.hina {
+      background: linear-gradient(135deg, #d9f0f7, #c5e8f2);
+      border: 3px solid #7cc7e8;
+      box-shadow: 0 0 0 2px #e8f7fb;
+    }
+    .member-name-chip {
+      font-size: 9.5px; font-weight: 500;
+      color: oklch(40% 0 0);
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+    .member-group-tag {
+      font-size: 8px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .member-group-tag.nogi { background: var(--nogi-soft); color: var(--nogi-text); }
+    .member-group-tag.saku { background: var(--saku-soft); color: var(--saku-text); }
+    .member-group-tag.hina { background: #e8f7fb; color: #2c7a96; }
+
+    /* ─── SECTION ─── */
+    .section { padding-top: 24px; }
+
+    .section-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+    .section-emblem {
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .section-emblem.nogi { background: linear-gradient(135deg, oklch(86% 0.12 310), oklch(80% 0.18 325)); }
+    .section-emblem.saku { background: linear-gradient(135deg, oklch(84% 0.14 358), oklch(78% 0.20 10)); }
+    .section-emblem.hina { background: linear-gradient(135deg, #d9f0f7, #c5e8f2); }
+
+    .section-title-block {}
+    .section-name {
+      font-family: var(--font-min);
+      font-size: 16px; font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .section-name.nogi { color: var(--nogi-text); }
+    .section-name.saku { color: var(--saku-text); }
+    .section-name.hina { color: #2c7a96; }
+
+    .section-count {
+      font-size: 10px; color: oklch(60% 0 0); margin-top: 1px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── CARD ─── */
+    .card-list { display: flex; flex-direction: column; gap: 10px; }
+
+    details.news-card {
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    details.news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px oklch(0% 0 0 / 0.08);
+    }
+
+    /* Glassmorphism card face */
+    details.news-card > summary {
+      list-style: none; cursor: pointer;
+      padding: 14px 16px;
+      background: oklch(100% 0 0 / 0.80);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid oklch(90% 0.03 320 / 0.6);
+      border-radius: 18px;
+      transition: background 0.2s ease;
+      display: block;
+    }
+    details.news-card > summary::-webkit-details-marker { display: none; }
+    details.news-card[open] > summary {
+      border-radius: 18px 18px 0 0;
+    }
+    details.news-card > summary:hover { background: oklch(100% 0 0 / 0.92); }
+
+    /* Nogi card */
+    details.card-nogi > summary {
+      border-left: 3.5px solid var(--nogi-main);
+    }
+    /* Saku card */
+    details.card-saku > summary {
+      border-left: 3.5px solid var(--saku-main);
+    }
+    /* Hina card */
+    details.card-hina > summary {
+      border-left: 3.5px solid var(--hina-main);
+    }
+
+    .card-inner {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .card-body { flex: 1; min-width: 0; }
+
+    /* Member badge row */
+    .badge-row {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 5px;
+      margin-bottom: 7px;
+    }
+
+    .member-badge {
+      font-size: 10.5px; font-weight: 700;
+      padding: 2px 9px 2px 4px;
+      border-radius: 14px;
+      letter-spacing: 0.04em;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .member-badge.nogi { background: var(--nogi-main); color: #fff; }
+    .member-badge.saku { background: var(--saku-main); color: #fff; }
+    .member-badge.hina { background: var(--hina-main); color: #fff; }
+    .member-badge.group { background: oklch(93% 0 0); color: oklch(45% 0 0); padding: 2px 9px; }
+
+    .badge-avatar {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 1.5px solid oklch(100% 0 0 / 0.5);
+      flex-shrink: 0;
+    }
+
+    .type-label {
+      font-size: 10px; color: oklch(60% 0 0); letter-spacing: 0.06em;
+    }
+    .date-label {
+      font-size: 10px; color: oklch(68% 0 0);
+    }
+
+    .card-title {
+      font-size: 13.5px; font-weight: 700;
+      color: oklch(20% 0 0);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+    .card-summary {
+      font-size: 11.5px; color: oklch(48% 0 0);
+      line-height: 1.65;
+      margin-bottom: 7px;
+    }
+
+    /* Tags */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag {
+      font-size: 10px; font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.04em;
+    }
+    .tag.nogi { background: var(--nogi-soft); color: var(--nogi-text); }
+    .tag.saku { background: var(--saku-soft); color: var(--saku-text); }
+    .tag.hina { background: #e8f7fb; color: #2c7a96; }
+
+    /* Chevron */
+    .chevron-wrap {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: oklch(95% 0 0);
+      margin-top: 2px;
+    }
+    .chevron {
+      width: 12px; height: 12px;
+      transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      color: oklch(55% 0 0);
+    }
+    details[open] .chevron { transform: rotate(180deg); }
+
+    /* ─── EXPAND BODY ─── */
+    .expand-body {
+      padding: 14px 16px;
+      border: 1px solid oklch(90% 0.03 320 / 0.5);
+      border-top: none;
+      border-radius: 0 0 18px 18px;
+    }
+    .expand-body.nogi { background: oklch(97% 0.03 310 / 0.75); }
+    .expand-body.saku { background: oklch(97% 0.03 5   / 0.75); }
+    .expand-body.hina { background: #f8fcfd; }
+
+    .bullet-list { list-style: none; margin-bottom: 12px; display: flex; flex-direction: column; gap: 7px; }
+    .bullet-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 11.5px; color: oklch(25% 0 0); line-height: 1.6;
+    }
+    .bullet { font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+    .bullet.nogi { color: var(--nogi-main); }
+    .bullet.saku { color: var(--saku-main); }
+    .bullet.hina { color: #7cc7e8; }
+
+    .read-more {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: opacity 0.15s;
+    }
+    .read-more:hover { opacity: 0.72; }
+    .read-more.nogi { color: var(--nogi-text); }
+    .read-more.saku { color: var(--saku-text); }
+    .read-more.hina { color: #2c7a96; }
+
+    /* ─── DIVIDER ─── */
+    .group-divider {
+      margin: 30px 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, oklch(86% 0.04 320), transparent);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      margin-top: 40px;
+      padding: 20px 0;
+      text-align: center;
+    }
+    .footer-flowers { font-size: 18px; letter-spacing: 4px; margin-bottom: 6px; opacity: 0.5; }
+    .footer-text { font-size: 10px; color: oklch(70% 0 0); letter-spacing: 0.1em; }
+
+    /* ─── PETAL ANIMATION ─── */
+    @keyframes fall {
+      0%   { transform: translateY(-40px) rotate(0deg) translateX(0); opacity: 0; }
+      5%   { opacity: 1; }
+      90%  { opacity: 0.7; }
+      100% { transform: translateY(110vh) rotate(720deg) translateX(var(--drift)); opacity: 0; }
+    }
+
+    /* ─── MEMBER AVATAR SHINE ─── */
+    @keyframes avatar-glow {
+      0%, 100% { box-shadow: 0 0 0 0 transparent; }
+      50%       { box-shadow: 0 0 0 5px oklch(88% 0.10 310 / 0.4); }
+    }
+    .member-avatar { animation: avatar-glow 3s ease-in-out infinite; }
+    .member-chip:nth-child(2) .member-avatar { animation-delay: 0.5s; }
+    .member-chip:nth-child(3) .member-avatar { animation-delay: 1s; animation-name: avatar-glow-saku; }
+    .member-chip:nth-child(4) .member-avatar { animation-delay: 1.5s; animation-name: avatar-glow-saku; }
+    .member-chip:nth-child(5) .member-avatar { animation-delay: 2s; animation-name: avatar-glow-hina; }
+    @keyframes avatar-glow-saku {
+      0%, 100% { box-shadow: 0 0 0 0 transparent; }
+      50%       { box-shadow: 0 0 0 5px oklch(86% 0.14 5 / 0.4); }
+    }
+    @keyframes avatar-glow-hina {
+      0%, 100% { box-shadow: 0 0 0 0 transparent; }
+      50%       { box-shadow: 0 0 0 5px oklch(88% 0.12 80 / 0.4); }
+    }
+
+    /* ─── SCROLL FADE-IN ─── */
+    .section { opacity: 0; transform: translateY(16px); animation: fade-up 0.5s ease forwards; }
+    #nogizaka  { animation-delay: 0.1s; }
+    #sakurazaka{ animation-delay: 0.25s; }
+    #hinatazaka{ animation-delay: 0.4s; }
+    @keyframes fade-up {
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ─── HERO BANNER ─── */
+    .hero {
+      margin: 16px 0 0;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg,
+        oklch(94% 0.05 310 / 0.8) 0%,
+        oklch(95% 0.05 5   / 0.8) 50%,
+        oklch(96% 0.06 80  / 0.8) 100%
+      );
+      backdrop-filter: blur(12px);
+      border: 1px solid oklch(90% 0.04 320 / 0.5);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .hero-flowers { font-size: 32px; flex-shrink: 0; }
+    .hero-text h2 {
+      font-family: var(--font-min);
+      font-size: 15px; font-weight: 700;
+      color: oklch(28% 0.08 310);
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+    }
+    .hero-text p {
+      font-size: 11px; color: oklch(48% 0 0); margin-top: 3px;
+      letter-spacing: 0.06em;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex; gap: 8px;
+      margin: 10px 0 0;
+    }
+    .stat-pill {
+      flex: 1;
+      text-align: center;
+      padding: 7px 6px;
+      border-radius: 14px;
+      background: oklch(100% 0 0 / 0.65);
+      border: 1px solid oklch(90% 0.04 320 / 0.5);
+    }
+    .stat-num { font-size: 17px; font-weight: 700; }
+    .stat-num.nogi { color: var(--nogi-text); }
+    .stat-num.saku { color: var(--saku-text); }
+    .stat-num.hina { color: #2c7a96; }
+    .stat-lbl { font-size: 9px; color: oklch(55% 0 0); letter-spacing: 0.06em; margin-top: 1px; }
+  </style>
+</head>
+<body>
+
+<!-- 花びらキャンバス -->
+<canvas id="petal-canvas"></canvas>
+
+<div class="page-wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-top">
+      <div class="header-title">
+        <h1>推し活ニュース</h1>
+        <span class="subtitle">坂道46</span>
+      </div>
+      <div class="header-meta">
+        <span class="update-badge">
+          <span class="live-dot"></span>
+          2026-05-05 06:03
+        </span>
+      </div>
+    </div>
+    <nav class="group-nav">
+      <a href="#nogizaka"   class="gnav-btn nogi"><span class="gnav-icon">🌸</span>乃木坂46</a>
+      <a href="#sakurazaka" class="gnav-btn saku"><span class="gnav-icon">🌸</span>櫻坂46</a>
+      <a href="#hinatazaka" class="gnav-btn hina"><span class="gnav-icon">🌻</span>日向坂46</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <div class="hero-flowers">🌸</div>
+    <div class="hero-text">
+      <h2>推しメンの最新情報</h2>
+      <p>遠藤さくら · 池田瑛紗 · 村井優 · 石森璃花 · 小坂菜緒</p>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-pill">
+      <div class="stat-num nogi">5</div>
+      <div class="stat-lbl">乃木坂</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num saku">4</div>
+      <div class="stat-lbl">櫻坂</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num hina">3</div>
+      <div class="stat-lbl">日向坂</div>
+    </div>
+  </div>
+
+  <!-- ===== MEMBER STRIP ===== -->
+  <div class="member-strip">
+    <div class="member-chip">
+      <div class="member-avatar nogi">
+        <img src="uploads/image4.png" alt="遠藤さくら">
+      </div>
+      <div class="member-name-chip">遠藤さくら</div>
+      <div class="member-group-tag nogi">乃木坂</div>
+    </div>
+    <div class="member-chip">
+      <div class="member-avatar nogi">
+        <img src="uploads/image5.png" alt="池田瑛紗">
+      </div>
+      <div class="member-name-chip">池田瑛紗</div>
+      <div class="member-group-tag nogi">乃木坂</div>
+    </div>
+    <div class="member-chip">
+      <div class="member-avatar saku">
+        <img src="uploads/image2.png" alt="村井優">
+      </div>
+      <div class="member-name-chip">村井優</div>
+      <div class="member-group-tag saku">櫻坂</div>
+    </div>
+    <div class="member-chip">
+      <div class="member-avatar saku">
+        <img src="uploads/image1.png" alt="石森璃花">
+      </div>
+      <div class="member-name-chip">石森璃花</div>
+      <div class="member-group-tag saku">櫻坂</div>
+    </div>
+    <div class="member-chip">
+      <div class="member-avatar hina">
+        <img src="uploads/image3.png" alt="小坂菜緒">
+      </div>
+      <div class="member-name-chip">小坂菜緒</div>
+      <div class="member-group-tag hina">日向坂</div>
+    </div>
+  </div>
+
+  <!-- ━━━━━━━━━━━━━━━━━
+       乃木坂46
+  ━━━━━━━━━━━━━━━━━ -->
+  <section id="nogizaka" class="section">
+    <div class="section-header">
+      <div class="section-emblem nogi">🌸</div>
+      <div class="section-title-block">
+        <div class="section-name nogi">乃木坂46</div>
+        <div class="section-count">5件のニュース</div>
+      </div>
+    </div>
+
+    <div class="card-list">
+
+      <!-- 遠藤さくら ブログ（展開済み） -->
+      <details class="news-card card-nogi" open>
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge nogi"><img class="badge-avatar" src="uploads/image4.png" alt="">遠藤さくら</span>
+                <span class="type-label">ブログ</span>
+                <span class="date-label">· 2026-05-05</span>
+              </div>
+              <div class="card-title">おはようございます！今日はロケ撮影でした☀️</div>
+              <div class="card-summary">遠藤さくらが新しい写真集撮影のロケについてブログで報告。晴天の中での撮影を楽しんだ様子を伝えている。</div>
+              <div class="tag-row">
+                <span class="tag nogi">#ブログ更新</span>
+                <span class="tag nogi">#写真集</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body nogi">
+          <ul class="bullet-list">
+            <li><span class="bullet nogi">✿</span><span>ロケ地は神奈川県の海辺で、初夏の雰囲気を演出した撮影が行われた</span></li>
+            <li><span class="bullet nogi">✿</span><span>写真集は6月下旬発売予定とスタッフよりアナウンスあり</span></li>
+            <li><span class="bullet nogi">✿</span><span>ブログでは撮影の合間に食べたアイスの話も紹介し、ファンから好評コメント多数</span></li>
+          </ul>
+          <a href="#" class="read-more nogi">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+      <!-- グループニュース -->
+      <details class="news-card card-nogi">
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge group">グループ</span>
+                <span class="type-label">公式ニュース</span>
+                <span class="date-label">· 2026-05-04</span>
+              </div>
+              <div class="card-title">33rdシングル発売記念イベント開催決定のお知らせ</div>
+              <div class="card-summary">乃木坂46の33rdシングル発売を記念した握手会・サイン会イベントが全国4都市で開催決定。応募受付は5月10日開始。</div>
+              <div class="tag-row">
+                <span class="tag nogi">#握手会</span>
+                <span class="tag nogi">#サイン会</span>
+                <span class="tag nogi">#チケット</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body nogi">
+          <ul class="bullet-list">
+            <li><span class="bullet nogi">✿</span><span>東京・大阪・名古屋・福岡の4都市にて開催予定（6〜7月）</span></li>
+            <li><span class="bullet nogi">✿</span><span>応募はCD同梱の申込券もしくは公式アプリから受付</span></li>
+          </ul>
+          <a href="#" class="read-more nogi">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+      <!-- 池田瑛紗 -->
+      <details class="news-card card-nogi">
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge nogi"><img class="badge-avatar" src="uploads/image5.png" alt="">池田瑛紗</span>
+                <span class="type-label">ブログ</span>
+                <span class="date-label">· 2026-05-04</span>
+              </div>
+              <div class="card-title">展覧会に行ってきました🎨【絵日記付き】</div>
+              <div class="card-summary">池田瑛紗がお気に入りのアーティストの個展を訪れ、感想と自作の絵日記をブログに掲載した。</div>
+              <div class="tag-row">
+                <span class="tag nogi">#ブログ更新</span>
+                <span class="tag nogi">#アート</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body nogi">
+          <ul class="bullet-list">
+            <li><span class="bullet nogi">✿</span><span>六本木の現代美術ギャラリーにて開催中の個展を観覧</span></li>
+            <li><span class="bullet nogi">✿</span><span>自作のデジタル絵日記（4コマ）をブログに添付、ファンから好評</span></li>
+          </ul>
+          <a href="#" class="read-more nogi">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <div class="group-divider"></div>
+
+  <!-- ━━━━━━━━━━━━━━━━━
+       櫻坂46
+  ━━━━━━━━━━━━━━━━━ -->
+  <section id="sakurazaka" class="section">
+    <div class="section-header">
+      <div class="section-emblem saku">🌹</div>
+      <div class="section-title-block">
+        <div class="section-name saku">櫻坂46</div>
+        <div class="section-count">4件のニュース</div>
+      </div>
+    </div>
+
+    <div class="card-list">
+
+      <details class="news-card card-saku">
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge group">グループ</span>
+                <span class="type-label">公式ニュース</span>
+                <span class="date-label">· 2026-05-05</span>
+              </div>
+              <div class="card-title">8thシングル「エスカレーター」MV公開のお知らせ</div>
+              <div class="card-summary">櫻坂46の8thシングル「エスカレーター」のミュージックビデオが公式YouTubeで公開された。</div>
+              <div class="tag-row">
+                <span class="tag saku">#MV</span>
+                <span class="tag saku">#新曲</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body saku">
+          <ul class="bullet-list">
+            <li><span class="bullet saku">✿</span><span>YouTube公開は午前10時、3時間で100万再生を突破</span></li>
+            <li><span class="bullet saku">✿</span><span>シングル発売は6月4日、通常盤・TYPE-A〜C・完全生産限定盤の4形態</span></li>
+          </ul>
+          <a href="#" class="read-more saku">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+      <!-- 村井優 -->
+      <details class="news-card card-saku">
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge saku"><img class="badge-avatar" src="uploads/image2.png" alt="">村井優</span>
+                <span class="type-label">ブログ</span>
+                <span class="date-label">· 2026-05-04</span>
+              </div>
+              <div class="card-title">MV撮影、めちゃくちゃ楽しかった！！</div>
+              <div class="card-summary">村井優が8thシングルのMV撮影エピソードをブログで公開。衣装や撮影裏側について語った。</div>
+              <div class="tag-row">
+                <span class="tag saku">#ブログ更新</span>
+                <span class="tag saku">#MV</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body saku">
+          <ul class="bullet-list">
+            <li><span class="bullet saku">✿</span><span>衣装は3パターン、お気に入りは白×桜色のドレス</span></li>
+            <li><span class="bullet saku">✿</span><span>撮影は2日間、石森璃花と仲良くオフショットを撮った模様</span></li>
+          </ul>
+          <a href="#" class="read-more saku">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+      <!-- 石森璃花 -->
+      <details class="news-card card-saku">
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge saku"><img class="badge-avatar" src="uploads/image1.png" alt="">石森璃花</span>
+                <span class="type-label">SNS</span>
+                <span class="date-label">· 2026-05-03</span>
+              </div>
+              <div class="card-title">ありがとう、ありがとう。本番まで楽しみにしていてね🌸</div>
+              <div class="card-summary">石森璃花がツアーに向けた意気込みをSNSで投稿。ファンへのメッセージと撮影オフショットを公開した。</div>
+              <div class="tag-row">
+                <span class="tag saku">#SNS更新</span>
+                <span class="tag saku">#ライブ</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body saku">
+          <ul class="bullet-list">
+            <li><span class="bullet saku">✿</span><span>ツアーリハーサルの様子を短く報告、笑顔の後ろ姿ショット添付</span></li>
+            <li><span class="bullet saku">✿</span><span>「一緒に楽しもう」とファンへ呼びかけ、多数のコメントが集まった</span></li>
+          </ul>
+          <a href="#" class="read-more saku">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <div class="group-divider"></div>
+
+  <!-- ━━━━━━━━━━━━━━━━━
+       日向坂46
+  ━━━━━━━━━━━━━━━━━ -->
+  <section id="hinatazaka" class="section">
+    <div class="section-header">
+      <div class="section-emblem hina">🌻</div>
+      <div class="section-title-block">
+        <div class="section-name hina">日向坂46</div>
+        <div class="section-count">3件のニュース</div>
+      </div>
+    </div>
+
+    <div class="card-list">
+
+      <!-- 小坂菜緒 -->
+      <details class="news-card card-hina">
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge hina"><img class="badge-avatar" src="uploads/image3.png" alt="">小坂菜緒</span>
+                <span class="type-label">ブログ</span>
+                <span class="date-label">· 2026-05-05</span>
+              </div>
+              <div class="card-title">おやすみなさい🌙今日もお疲れ様でした</div>
+              <div class="card-summary">小坂菜緒がレギュラー番組の収録を終えた後にブログを更新。ファンへの感謝と日常の一コマを綴った。</div>
+              <div class="tag-row">
+                <span class="tag hina">#ブログ更新</span>
+                <span class="tag hina">#TV出演</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body hina">
+          <ul class="bullet-list">
+            <li><span class="bullet hina">✿</span><span>テレビ番組「日向坂で会いましょう」収録後に投稿</span></li>
+            <li><span class="bullet hina">✿</span><span>最近ハマっている読書について触れ、おすすめ本を紹介</span></li>
+          </ul>
+          <a href="#" class="read-more hina">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+      <!-- グループニュース -->
+      <details class="news-card card-hina">
+        <summary>
+          <div class="card-inner">
+            <div class="card-body">
+              <div class="badge-row">
+                <span class="member-badge group">グループ</span>
+                <span class="type-label">公式ニュース</span>
+                <span class="date-label">· 2026-05-03</span>
+              </div>
+              <div class="card-title">全国ツアー2026追加公演のお知らせ</div>
+              <div class="card-summary">日向坂46の全国ツアー2026に北海道・仙台会場が追加。チケット一般発売は5月20日10時より。</div>
+              <div class="tag-row">
+                <span class="tag hina">#ライブ</span>
+                <span class="tag hina">#チケット</span>
+              </div>
+            </div>
+            <div class="chevron-wrap">
+              <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </div>
+        </summary>
+        <div class="expand-body hina">
+          <ul class="bullet-list">
+            <li><span class="bullet hina">✿</span><span>北海道公演: 7月12〜13日 北海道立総合体育センター</span></li>
+            <li><span class="bullet hina">✿</span><span>仙台公演: 7月19〜20日 宮城県総合運動公園屋外ステージ</span></li>
+            <li><span class="bullet hina">✿</span><span>ファンクラブ先行は5月10日より、抽選申し込みフォームにて受付</span></li>
+          </ul>
+          <a href="#" class="read-more hina">元記事を読む
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-flowers">🌸 🌹 🌻</div>
+    <div class="footer-text">推し活ニュース · 個人用ダッシュボード · 2026</div>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<script>
+// ─── PETAL CANVAS ───
+const canvas = document.getElementById('petal-canvas');
+const ctx    = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Petal shapes: 0=sakura, 1=round, 2=sunflower leaf
+const PETAL_COLORS = [
+  // nogi — lilac & blush
+  'oklch(84% 0.14 310)', 'oklch(90% 0.10 320)', 'oklch(80% 0.18 295)',
+  // saku — deep pink
+  'oklch(78% 0.20 355)', 'oklch(86% 0.14 5)',   'oklch(70% 0.24 10)',
+  // hina — yellow & sunny
+  'oklch(88% 0.18 80)',  'oklch(85% 0.14 70)',  'oklch(82% 0.16 65)',
+];
+
+class Petal {
+  constructor() { this.reset(true); }
+  reset(init) {
+    this.x     = Math.random() * canvas.width;
+    this.y     = init ? Math.random() * canvas.height : -20;
+    this.size  = 5 + Math.random() * 9;
+    this.speed = 0.4 + Math.random() * 0.9;
+    this.drift = (Math.random() - 0.5) * 0.7;
+    this.rot   = Math.random() * Math.PI * 2;
+    this.rotV  = (Math.random() - 0.5) * 0.03;
+    this.alpha = 0.35 + Math.random() * 0.55;
+    this.colorA = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
+    this.colorB = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
+    this.shape = Math.floor(Math.random() * 3);
+    this.swing = Math.random() * Math.PI * 2;
+    this.swingSpeed = 0.01 + Math.random() * 0.02;
+  }
+  update() {
+    this.swing += this.swingSpeed;
+    this.x    += this.drift + Math.sin(this.swing) * 0.6;
+    this.y    += this.speed;
+    this.rot  += this.rotV;
+    if (this.y > canvas.height + 30) this.reset(false);
+  }
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+
+    if (this.shape === 0) {
+      // sakura petal (heart-ish)
+      ctx.beginPath();
+      ctx.moveTo(0, -this.size * 0.5);
+      ctx.bezierCurveTo( this.size * 0.9, -this.size * 0.9,
+                         this.size * 1.1, this.size * 0.3,
+                         0, this.size * 0.9);
+      ctx.bezierCurveTo(-this.size * 1.1, this.size * 0.3,
+                        -this.size * 0.9, -this.size * 0.9,
+                        0, -this.size * 0.5);
+      ctx.fillStyle = this.colorA;
+      ctx.fill();
+    } else if (this.shape === 1) {
+      // round soft petal
+      ctx.beginPath();
+      ctx.ellipse(0, 0, this.size * 0.55, this.size, 0, 0, Math.PI * 2);
+      ctx.fillStyle = this.colorA;
+      ctx.fill();
+    } else {
+      // small leaf / sunflower petal
+      ctx.beginPath();
+      ctx.ellipse(0, 0, this.size * 0.35, this.size * 0.9, 0, 0, Math.PI * 2);
+      ctx.fillStyle = this.colorB;
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+}
+
+const PETAL_COUNT = 55;
+const petals = Array.from({ length: PETAL_COUNT }, () => new Petal());
+
+function animLoop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  petals.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animLoop);
+}
+animLoop();
+</script>
+
+</body>
+</html>

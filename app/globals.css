@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 乃木坂 — 桜×紫 */
+  --nogi-main:   oklch(62% 0.18 310);
+  --nogi-soft:   oklch(94% 0.04 310);
+  --nogi-glass:  oklch(97% 0.03 310 / 0.72);
+  --nogi-text:   oklch(38% 0.14 310);
+
+  /* 櫻坂 — 桜ピンク×紅 */
+  --saku-main:   oklch(60% 0.22 0);
+  --saku-soft:   oklch(95% 0.04 5);
+  --saku-glass:  oklch(97% 0.04 5 / 0.72);
+  --saku-text:   oklch(38% 0.18 5);
+
+  /* 日向坂 — 向日葵×水色 */
+  --hina-main:   #7cc7e8;
+  --hina-soft:   oklch(96% 0.04 210);
+  --hina-glass:  oklch(98% 0.04 210 / 0.72);
+  --hina-text:   #2c7a96;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #fdf7f9;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Gradient wash */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%,   oklch(93% 0.06 320 / 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 15%,  oklch(93% 0.07 5   / 0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 40% at 50% 100%, oklch(95% 0.06 85  / 0.4) 0%, transparent 60%),
+    linear-gradient(160deg, #fff8fc 0%, #fff4f6 40%, #fffaf2 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── アコーディオン ─── */
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chevron { transform: rotate(180deg); }
+.chevron { transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ─── カード ─── */
+details.news-card {
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+details.news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px oklch(0% 0 0 / 0.08);
+}
+details.news-card > summary {
+  padding: 14px 16px;
+  background: oklch(100% 0 0 / 0.80);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid oklch(90% 0.03 320 / 0.6);
+  border-radius: 18px;
+  display: block;
+  transition: background 0.2s ease;
+}
+details.news-card[open] > summary { border-radius: 18px 18px 0 0; }
+details.news-card > summary:hover { background: oklch(100% 0 0 / 0.92); }
+
+/* カードグループ色 */
+details.card-nogi > summary { border-left: 3.5px solid var(--nogi-main); }
+details.card-saku > summary { border-left: 3.5px solid var(--saku-main); }
+details.card-hina > summary { border-left: 3.5px solid var(--hina-main); }
+
+/* 展開エリア */
+.expand-body {
+  padding: 14px 16px;
+  border: 1px solid oklch(90% 0.03 320 / 0.5);
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+}
+.expand-body.nogi { background: oklch(97% 0.03 310 / 0.75); }
+.expand-body.saku { background: oklch(97% 0.03 5   / 0.75); }
+.expand-body.hina { background: #f8fcfd; }
+
+/* セクション fade-up */
+.section { opacity: 0; transform: translateY(16px); animation: fade-up 0.5s ease forwards; }
+#nogizaka   { animation-delay: 0.1s; }
+#sakurazaka { animation-delay: 0.25s; }
+#hinatazaka { animation-delay: 0.4s; }
+@keyframes fade-up { to { opacity: 1; transform: none; } }
+
+/* アバター glow */
+@keyframes avatar-glow {
+  0%, 100% { box-shadow: 0 0 0 0 transparent; }
+  50%       { box-shadow: 0 0 0 5px oklch(88% 0.10 310 / 0.4); }
+}
+@keyframes avatar-glow-saku {
+  0%, 100% { box-shadow: 0 0 0 0 transparent; }
+  50%       { box-shadow: 0 0 0 5px oklch(86% 0.14 5 / 0.4); }
+}
+@keyframes avatar-glow-hina {
+  0%, 100% { box-shadow: 0 0 0 0 transparent; }
+  50%       { box-shadow: 0 0 0 5px oklch(88% 0.12 80 / 0.4); }
+}
+
+/* Live dot */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(65% 0.22 145 / 0.5); }
+  50%       { box-shadow: 0 0 0 5px oklch(65% 0.22 145 / 0); }
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: oklch(65% 0.22 145);
+  animation: pulse-dot 2s ease-in-out infinite;
+  display: inline-block;
+}
