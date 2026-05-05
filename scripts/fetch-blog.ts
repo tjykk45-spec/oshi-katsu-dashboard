@@ -96,6 +96,10 @@ async function scrapesakurazakaBlog(member: typeof MEMBERS[0], existingUrls: Set
   const results: RawBlogArticle[] = [];
 
   $("li.box").each((_, el) => {
+    // ct パラメータはサーバー側で効かないため、テキスト内にメンバー名があるか確認して絞り込む
+    const boxText = $(el).text();
+    if (!boxText.includes(member.name)) return;
+
     const href = $(el).find("a").first().attr("href") ?? "";
     const url = href.startsWith("http") ? href : BASE.sakurazaka46 + href;
     if (!url || existingUrls.has(url)) return;
@@ -118,6 +122,10 @@ async function scrapeHinatazakaBlog(member: typeof MEMBERS[0], existingUrls: Set
   const results: RawBlogArticle[] = [];
 
   $("div.p-blog-article").each((_, el) => {
+    // ct パラメータがサーバー側で効かない場合に備え、メンバー名で絞り込む
+    const boxText = $(el).text();
+    if (!boxText.includes(member.name)) return;
+
     const href = $(el).find("a.c-button-blog-detail").attr("href") ?? "";
     const url = href.startsWith("http") ? href : BASE.hinatazaka46 + href;
     if (!url || existingUrls.has(url)) return;
