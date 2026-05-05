@@ -41,16 +41,11 @@ jobs:
   deploy:
     needs: update
     runs-on: ubuntu-latest
-    concurrency:
-      group: pages
-      cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main  # update ジョブがコミットした後の最新を取得
+          fetch-depth: 0  # gh-pages ブランチを参照するため履歴全部必要
 
       - uses: actions/setup-node@v4
         with:
@@ -62,11 +57,10 @@ jobs:
       - name: Build Next.js static export
         run: npm run build
 
-      - uses: actions/configure-pages@v5
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: out/
-
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # gh-pages ブランチに直接 push（Pagesは Settings で gh-pages から配信）
+      - name: Deploy to gh-pages branch
+        run: |
+          touch out/.nojekyll
+          npx gh-pages -d out -t -u "oshi-bot <actions@github.com>" -m "deploy: $(date +'%Y-%m-%d %H:%M')"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
