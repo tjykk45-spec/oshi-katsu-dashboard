@@ -63,4 +63,4 @@ jobs:
           touch out/.nojekyll
           npx gh-pages -d out -t -u "oshi-bot <actions@github.com>" -m "deploy: $(date +'%Y-%m-%d %H:%M')"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
