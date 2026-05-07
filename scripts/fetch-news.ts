@@ -18,6 +18,11 @@ const BASE = {
   hinatazaka46: "https://www.hinatazaka46.com",
 };
 
+/** トラッキングパラメータ（ima, pri1 など）を除去してURLを正規化 */
+function normalizeUrl(url: string): string {
+  return url.split("?")[0];
+}
+
 function toDateStr(raw: string): string {
   const cleaned = raw.trim()
     .replace(/年/g, "-").replace(/月/g, "-").replace(/日.*/, "")
@@ -46,7 +51,7 @@ async function fetchNogizakaNews(existingUrls: Set<string>): Promise<RawNewsArti
   const results: RawNewsArticle[] = [];
 
   for (const item of json.data ?? []) {
-    const url = item.link_url;
+    const url = normalizeUrl(item.link_url);
     if (!url || existingUrls.has(url)) continue;
     const dateStr = toDateStr(item.date);
     if (!isWithinHours(dateStr, FETCH_HOURS)) continue;
@@ -68,7 +73,7 @@ async function fetchSakurazakaNews(existingUrls: Set<string>): Promise<RawNewsAr
 
   $("a[href*='/s/s46/news/detail/']").each((_, el) => {
     const href = $(el).attr("href") ?? "";
-    const url = href.startsWith("http") ? href : BASE.sakurazaka46 + href;
+    const url = normalizeUrl(href.startsWith("http") ? href : BASE.sakurazaka46 + href);
     if (!url || existingUrls.has(url)) return;
 
     const title = $(el).find(".title").text().trim() || $(el).text().trim().slice(0, 80);
@@ -96,7 +101,7 @@ async function fetchHinatazakaNews(existingUrls: Set<string>): Promise<RawNewsAr
   $("a[href*='/news/detail/'], a[href*='/official/news/']").each((_, el) => {
     const href = $(el).attr("href") ?? "";
     if (!href.includes("news/detail")) return;
-    const url = href.startsWith("http") ? href : BASE.hinatazaka46 + href;
+    const url = normalizeUrl(href.startsWith("http") ? href : BASE.hinatazaka46 + href);
     if (!url || existingUrls.has(url)) return;
 
     const title = $(el).find(".c-news__title, .p-news__text, .title").text().trim()

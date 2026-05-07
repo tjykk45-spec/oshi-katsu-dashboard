@@ -13,6 +13,12 @@ export interface RawBlogArticle {
 }
 
 const UA = "Mozilla/5.0 (compatible; DailyOshiBot/1.0; +mailto:tjykk45@gmail.com)";
+
+/** トラッキングパラメータ（ima など）を除去してURLを正規化 */
+function normalizeUrl(url: string): string {
+  return url.split("?")[0];
+}
+
 const BASE = {
   nogizaka46: "https://www.nogizaka46.com",
   sakurazaka46: "https://sakurazaka46.com",
@@ -66,7 +72,7 @@ async function scrapeNogizakaBlog(member: typeof MEMBERS[0], existingUrls: Set<s
 
   const results: RawBlogArticle[] = [];
   for (const item of json.data ?? []) {
-    const url = item.link || `${BASE.nogizaka46}/s/n46/diary/detail/${item.code}`;
+    const url = normalizeUrl(item.link || `${BASE.nogizaka46}/s/n46/diary/detail/${item.code}`);
     if (!url || existingUrls.has(url)) continue;
     const dateStr = toDateStr(item.date);
     if (!isWithinHours(dateStr, FETCH_HOURS)) continue;
