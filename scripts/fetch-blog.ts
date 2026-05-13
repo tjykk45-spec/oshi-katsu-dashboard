@@ -109,7 +109,7 @@ async function scrapesakurazakaBlog(member: typeof MEMBERS[0], existingUrls: Set
     if (!boxText.includes(targetName)) return;
 
     const href = $(el).find("a").first().attr("href") ?? "";
-    const url = href.startsWith("http") ? href : BASE.sakurazaka46 + href;
+    const url = normalizeUrl(href.startsWith("http") ? href : BASE.sakurazaka46 + href);
     if (!url || existingUrls.has(url)) return;
 
     const title = $(el).find("h3.title").text().trim();
@@ -136,7 +136,7 @@ async function scrapeHinatazakaBlog(member: typeof MEMBERS[0], existingUrls: Set
     if (!boxText.includes(targetName)) return;
 
     const href = $(el).find("a.c-button-blog-detail").attr("href") ?? "";
-    const url = href.startsWith("http") ? href : BASE.hinatazaka46 + href;
+    const url = normalizeUrl(href.startsWith("http") ? href : BASE.hinatazaka46 + href);
     if (!url || existingUrls.has(url)) return;
 
     const title = $(el).find("div.c-blog-article__title").text().trim();
