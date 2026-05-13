@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const ArticleSchema = z.object({
   id: z.string(),
-  title: z.string().max(80),
+  title: z.string(),
   url: z.string().url(),
   date: z.string(),          // YYYY-MM-DD
   group: z.enum(["nogizaka46", "sakurazaka46", "hinatazaka46"]),
