@@ -87,6 +87,7 @@ async function fetchSakurazakaNews(existingUrls: Set<string>): Promise<RawNewsAr
 }
 
 // 日向坂46: HTML スクレイピング
+// 実際のHTML構造: <li class="p-news__item"><a href="/s/official/news/detail/..."><time class="c-news__date">...</time><p class="c-news__text">...</p></a></li>
 async function fetchHinatazakaNews(existingUrls: Set<string>): Promise<RawNewsArticle[]> {
   const res = await fetch(
     "https://www.hinatazaka46.com/s/official/news/list",
@@ -97,17 +98,13 @@ async function fetchHinatazakaNews(existingUrls: Set<string>): Promise<RawNewsAr
   const $ = cheerio.load(await res.text());
   const results: RawNewsArticle[] = [];
 
-  // 日向坂ニュースの実際のセレクタを試す
-  $("a[href*='/news/detail/'], a[href*='/official/news/']").each((_, el) => {
+  $("li.p-news__item a[href*='/news/detail/']").each((_, el) => {
     const href = $(el).attr("href") ?? "";
-    if (!href.includes("news/detail")) return;
     const url = normalizeUrl(href.startsWith("http") ? href : BASE.hinatazaka46 + href);
     if (!url || existingUrls.has(url)) return;
 
-    const title = $(el).find(".c-news__title, .p-news__text, .title").text().trim()
-      || $(el).closest("li, div").find(".c-news__title, .title").text().trim();
-    const rawDate = $(el).find(".c-news__date, .date").text().trim()
-      || $(el).closest("li, div").find(".c-news__date, .date").text().trim();
+    const title = $(el).find("p.c-news__text").text().trim();
+    const rawDate = $(el).find("time.c-news__date").text().trim();
     const dateStr = toDateStr(rawDate);
 
     if (!title || !isWithinHours(dateStr, FETCH_HOURS)) return;
