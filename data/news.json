@@ -1,5 +1,64 @@
 [
   {
+    "id": "b0ca0195c3b2",
+    "title": "リリース\n      2026.05.21\n    \n     石森 璃花が歌唱を担当するぐんまちゃん新楽曲『ぐんまちゃんバ！』 リリックビデオFull ver",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/R00579",
+    "date": "2026-05-21",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46の石森璃花さんが歌唱を担当する、ぐんまちゃんの新楽曲『ぐんまちゃんバ！』のリリックビデオFull ver.が公開されました。ファンはぜひチェックしてください。",
+    "bullets": [
+      "石森璃花がぐんまちゃん新楽曲『ぐんまちゃんバ！』を歌唱。",
+      "リリックビデオFull ver.が公開されました。"
+    ],
+    "tags": [
+      "#新曲",
+      "#MV"
+    ],
+    "fetchedAt": "2026-05-21T08:48:38.102Z"
+  },
+  {
+    "id": "75f7b3dd22f1",
+    "title": "菅原咲月 乃木坂46 キャプテン就任のお知らせ",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/101960",
+    "date": "2026-05-20",
+    "group": "nogizaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "乃木坂46の菅原咲月さんが、グループの新キャプテンに就任したことが発表されました。今後のグループ活動における彼女のリーダーシップに注目が集まります。",
+    "bullets": [
+      "菅原咲月が乃木坂46の新キャプテンに就任。",
+      "グループの新たな体制がスタート。"
+    ],
+    "tags": [
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-21T08:48:38.102Z"
+  },
+  {
+    "id": "0a47455dc8f9",
+    "title": "「アップトゥボーイ」vol.363（5月22日(金)発売）の表紙・巻頭に大野愛実、中面に平岡海月が登場！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/M02706",
+    "date": "2026-05-20",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "5月22日発売の「アップトゥボーイ」vol.363では、日向坂46の大野愛実さんが表紙と巻頭を飾り、平岡海月さんも中面に登場します。ファン必見の内容です。",
+    "bullets": [
+      "「アップトゥボーイ」vol.363の表紙・巻頭に大野愛実が登場。",
+      "平岡海月も中面に登場します。",
+      "5月22日(金)発売。"
+    ],
+    "tags": [
+      "#写真集"
+    ],
+    "fetchedAt": "2026-05-21T08:48:38.102Z"
+  },
+  {
     "id": "5db223362bcc",
     "title": "イベント\n      2026.05.20\n    \n    櫻坂46「四期生LIVE」 LaLa arena TOKYO-BAY公演入場に関する注意事項",
     "url": "https://sakurazaka46.com/s/s46/news/detail/E00635",
@@ -1891,45 +1950,5 @@
       "#お知らせ"
     ],
     "fetchedAt": "2026-05-09T00:12:45.079Z"
-  },
-  {
-    "id": "fc86b35206a8",
-    "title": "41stシングル収録の梅澤美波ソロ曲「もう一つの太陽」のMusic Video公開！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101921",
-    "date": "2026-05-07",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46の梅澤美波さんソロ曲「もう一つの太陽」のMusic Videoが公開されました。41stシングルに収録されるこの楽曲の魅力的な映像をぜひチェックしてください。",
-    "bullets": [
-      "梅澤美波ソロ曲「もう一つの太陽」MV公開",
-      "41stシングルに収録"
-    ],
-    "tags": [
-      "#MV",
-      "#新曲"
-    ],
-    "fetchedAt": "2026-05-07T13:20:51.177Z"
-  },
-  {
-    "id": "ab1fde1436ca",
-    "title": "イベント\n      2026.05.07\n    \n    櫻坂46「14th Single BACKS LIVE!!」 幕張イベントホール公演入場に関する注",
-    "url": "https://sakurazaka46.com/s/s46/news/detail/E00630",
-    "date": "2026-05-07",
-    "group": "sakurazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "櫻坂46「14th Single BACKS LIVE!!」幕張イベントホール公演の入場に関する注意事項が発表されました。参加予定の方は必ず事前にご確認ください。",
-    "bullets": [
-      "櫻坂46「14th Single BACKS LIVE!!」幕張公演",
-      "入場に関する注意事項を公開"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-07T13:07:49.368Z"
   }
 ]
