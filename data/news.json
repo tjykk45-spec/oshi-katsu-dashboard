@@ -1,5 +1,246 @@
 [
   {
+    "id": "fd324f5a0082",
+    "title": "「ひなたフェス2026」キービジュアル公開！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00835",
+    "date": "2026-05-29",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の「ひなたフェス2026」のキービジュアルが公開されました。フェスの雰囲気を伝える魅力的なビジュアルで、開催への期待が高まります。ぜひチェックしてください。",
+    "bullets": [
+      "「ひなたフェス2026」のキービジュアルが公開",
+      "フェスの雰囲気を伝えるデザイン"
+    ],
+    "tags": [
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:58:50.067Z"
+  },
+  {
+    "id": "ab7d227d8510",
+    "title": "「ひなたフェス2026」スペシャルゲスト出演決定！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00836",
+    "date": "2026-05-29",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の「ひなたフェス2026」にスペシャルゲストの出演が決定しました。豪華なゲストがフェスをさらに盛り上げること間違いなしです。詳細は公式サイトでご確認ください。",
+    "bullets": [
+      "「ひなたフェス2026」にスペシャルゲスト出演",
+      "フェスの盛り上がりに期待"
+    ],
+    "tags": [
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:58:50.067Z"
+  },
+  {
+    "id": "90a92783f805",
+    "title": "「ひなたフェス2026」近隣キャンプ場をご紹介！会場をつなぐ無料シャトルバスの運行も決定！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00834",
+    "date": "2026-05-29",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "「ひなたフェス2026」の近隣キャンプ場情報が公開され、会場とキャンプ場を結ぶ無料シャトルバスの運行も決定しました。フェス参加を予定されている方は、宿泊と移動の計画にご活用ください。",
+    "bullets": [
+      "ひなたフェス2026の近隣キャンプ場情報が公開されました。",
+      "会場とキャンプ場をつなぐ無料シャトルバスの運行が決定しました。"
+    ],
+    "tags": [
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:59:10.907Z"
+  },
+  {
+    "id": "83562e40e5b7",
+    "title": "イベント\n      2026.05.29\n    \n    櫻坂46「四期生LIVE」の生配信が決定！5月30日(土)18:00より、配信視聴チケットの販売ス",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/E00638",
+    "date": "2026-05-29",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46「四期生LIVE」の生配信が決定し、5月30日(土)18:00より配信視聴チケットの販売が開始されます。ライブに参加できない方も、ぜひこの機会に生配信でパフォーマンスをお楽しみください。",
+    "bullets": [
+      "櫻坂46「四期生LIVE」の生配信が決定しました。",
+      "配信視聴チケットは5月30日(土)18:00より販売開始です。"
+    ],
+    "tags": [
+      "#ライブ",
+      "#チケット"
+    ],
+    "fetchedAt": "2026-05-29T08:59:10.907Z"
+  },
+  {
+    "id": "22f2f3a8c976",
+    "title": "リリース\n      2026.05.29\n    \n    YouTube Music Weekend : MUSIC AWARDS JAPAN 2026 E",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/R00590",
+    "date": "2026-05-29",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46が「YouTube Music Weekend : MUSIC AWARDS JAPAN 2026」に出演することが決定しました。詳細は後日発表される予定ですので、公式からの続報をお待ちください。",
+    "bullets": [
+      "YouTube Music Weekend : MUSIC AWARDS JAPAN 2026への出演が決定しました。"
+    ],
+    "tags": [
+      "#TV出演",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:59:10.907Z"
+  },
+  {
+    "id": "3438fd158c2f",
+    "title": "「真夏の全国ツアー2026」福井・神奈川・北海道公演　5月30日(土)12:00より一般発売スタート！",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/101972",
+    "date": "2026-05-28",
+    "group": "nogizaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "乃木坂46「真夏の全国ツアー2026」の福井、神奈川、北海道公演の一般発売が5月30日(土)12:00から開始されます。チケットをまだお持ちでない方はこの機会をお見逃しなく。",
+    "bullets": [
+      "全国ツアー福井・神奈川・北海道公演の一般発売",
+      "5月30日(土)12:00より販売開始"
+    ],
+    "tags": [
+      "#チケット",
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:58:50.067Z"
+  },
+  {
+    "id": "c4fbb12574aa",
+    "title": "【振替受付のご案内】吉田綾乃クリスティー 個別握手会参加券",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/101970",
+    "date": "2026-05-28",
+    "group": "nogizaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "吉田綾乃クリスティーさんの個別握手会参加券について、振替受付が開始されます。参加を予定されていた方は、詳細をご確認の上、期間内に手続きを行ってください。",
+    "bullets": [
+      "吉田綾乃クリスティー個別握手会の振替受付開始",
+      "参加券をお持ちの方は詳細を確認"
+    ],
+    "tags": [
+      "#握手会",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:58:50.067Z"
+  },
+  {
+    "id": "abeea6fe3f89",
+    "title": "吉田綾乃クリスティー 卒業のお知らせ",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/101971",
+    "date": "2026-05-28",
+    "group": "nogizaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "乃木坂46の吉田綾乃クリスティーさんがグループを卒業することが発表されました。今後の活動については、公式からの続報をお待ちください。ファンの方は彼女の最後の活動を応援しましょう。",
+    "bullets": [
+      "吉田綾乃クリスティーの乃木坂46卒業が決定",
+      "今後の活動に注目"
+    ],
+    "tags": [
+      "#卒業",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:58:50.067Z"
+  },
+  {
+    "id": "9853a54cb8b7",
+    "title": "その他\n      2026.05.28\n    \n    武元唯衣のプロフィールページとブログのクローズに関しまして",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/O100086",
+    "date": "2026-05-28",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "武元唯衣さんのプロフィールページとブログがクローズされることが発表されました。ファンの方は、クローズ日までにこれまでの活動を振り返るなど、ご確認ください。",
+    "bullets": [
+      "武元唯衣さんのプロフィールページがクローズされます。",
+      "武元唯衣さんのブログもクローズされます。"
+    ],
+    "tags": [
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:59:10.907Z"
+  },
+  {
+    "id": "d975a3841cfc",
+    "title": "グッズ\n      2026.05.28\n    \n    櫻坂46「四期生LIVE」にてUNI'S ON AIRコラボレーションアイテムが当たるガチャガチャの",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/G00214",
+    "date": "2026-05-28",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46「四期生LIVE」の会場にて、UNI'S ON AIRとのコラボレーションアイテムが当たるガチャガチャが実施されます。ライブに参加される方は、ぜひ会場でチャレンジしてみてください。",
+    "bullets": [
+      "櫻坂46「四期生LIVE」会場でガチャガチャが実施されます。",
+      "UNI'S ON AIRコラボレーションアイテムが景品として登場します。"
+    ],
+    "tags": [
+      "#グッズ",
+      "#ライブ"
+    ],
+    "fetchedAt": "2026-05-29T08:59:10.907Z"
+  },
+  {
+    "id": "013230d2f099",
+    "title": "その他\n      2026.05.28\n    \n    【櫻坂46メッセージ】『四期生全員購読』&『四期生ピックワン購読』 のWキャンペーンを実施！",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/O100087",
+    "date": "2026-05-28",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46メッセージアプリで、四期生全員購読とピックワン購読のWキャンペーンが実施されます。この機会に推しのメッセージを購読して、特別なコンテンツを楽しみましょう。",
+    "bullets": [
+      "櫻坂46メッセージアプリで四期生関連のWキャンペーン開催。",
+      "「四期生全員購読」と「四期生ピックワン購読」が対象。",
+      "ファンは推しのメッセージを購読するチャンスです。"
+    ],
+    "tags": [
+      "#お知らせ",
+      "#継続ウォッチ"
+    ],
+    "fetchedAt": "2026-05-29T08:59:27.678Z"
+  },
+  {
+    "id": "0def0333bfe0",
+    "title": "リリース\n      2026.05.28\n    \n    15th Double A-side Single『Lonesome rabbit / What'",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/R00589",
+    "date": "2026-05-28",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46の15thダブルAサイドシングル『Lonesome rabbit / What's your name?』がリリースされます。新曲の詳細や発売日、特典情報などをチェックして、発売に備えましょう。",
+    "bullets": [
+      "櫻坂46の15thダブルAサイドシングルがリリース決定。",
+      "タイトルは『Lonesome rabbit / What's your name?』。",
+      "新曲に関する詳細情報が今後発表される見込みです。"
+    ],
+    "tags": [
+      "#新曲",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-05-29T08:59:27.678Z"
+  },
+  {
     "id": "17705a72aae7",
     "title": "リリース\n      2026.05.28\n    \n    15th Double A-side Single収録『We got your back』ストリー",
     "url": "https://sakurazaka46.com/s/s46/news/detail/R00588",
@@ -1691,249 +1932,5 @@
       "#ライブ"
     ],
     "fetchedAt": "2026-05-16T23:37:33.204Z"
-  },
-  {
-    "id": "67ac4630ae65",
-    "title": "【のぎ動画】乃木坂あそぶだけ #82 “梅のや 閉店”  配信開始！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101943",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "のぎ動画で「乃木坂あそぶだけ #82 “梅のや 閉店”」の配信が開始されました。メンバーの日常や特別な瞬間を楽しめるコンテンツですので、ぜひチェックしてください。",
-    "bullets": [
-      "のぎ動画で「乃木坂あそぶだけ #82」が配信開始。",
-      "タイトルは「梅のや 閉店」。"
-    ],
-    "tags": [
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:38.411Z"
-  },
-  {
-    "id": "a7672d223e84",
-    "title": "「乃木坂配信中」にて「【待望⁈の第二弾】乃木坂愛が止まらない！鈴木佑捺と川端晃菜がバスラの思い出を語ってみた！【すずばた会議】」を公開！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101945",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂配信中で、鈴木佑捺さんと川端晃菜さんによる「すずばた会議」第二弾が公開されました。バスラ（バースデーライブ）の思い出を語る内容で、ファン必見のトークです。",
-    "bullets": [
-      "乃木坂配信中で「すずばた会議」第二弾が公開。",
-      "鈴木佑捺と川端晃菜がバスラの思い出を語る。"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:38.411Z"
-  },
-  {
-    "id": "511a766764e2",
-    "title": "乃木坂46 Mobile限定「のぎモバステーション」第18回配信スタート！中西アルノ＆長嶋凛桜でお届け！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101942",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46 Mobile限定コンテンツ「のぎモバステーション」の第18回配信が始まりました。今回は中西アルノさんと長嶋凛桜さんが担当しており、モバイル会員は特別なコンテンツを楽しめます。",
-    "bullets": [
-      "乃木坂46 Mobile限定「のぎモバステーション」第18回配信開始。",
-      "中西アルノと長嶋凛桜が出演。"
-    ],
-    "tags": [
-      "#お知らせ",
-      "#継続ウォッチ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:38.411Z"
-  },
-  {
-    "id": "82601a6876bf",
-    "title": "【のぎモバPASSPORT】14th YEAR BIRTHDAY LIVE 限定スタンプ実施決定！混雑回避のための「重要なお願い」",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101941",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "14th YEAR BIRTHDAY LIVEで、のぎモバPASSPORT限定スタンプの実施が決定しました。会場での混雑を避けるための重要なお願いも発表されていますので、参加される方は必ずご確認ください。",
-    "bullets": [
-      "14th YEAR BIRTHDAY LIVEで限定スタンプ実施。",
-      "のぎモバPASSPORT会員向け。",
-      "混雑回避のための重要なお願いあり。"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:38.411Z"
-  },
-  {
-    "id": "a88d81121e82",
-    "title": "「14th YEAR BIRTHDAY LIVE」オフィシャルグッズ会場事前販売ご来場時の注意事項",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101940",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "「14th YEAR BIRTHDAY LIVE」のオフィシャルグッズ会場事前販売に関する注意事項が公開されました。スムーズな購入のため、来場前に必ず詳細を確認してください。",
-    "bullets": [
-      "14th YEAR BIRTHDAY LIVEグッズ会場事前販売の注意事項。",
-      "来場前に確認必須。"
-    ],
-    "tags": [
-      "#グッズ",
-      "#ライブ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:38.411Z"
-  },
-  {
-    "id": "c2652c00b4dc",
-    "title": "【オフィシャルグッズ販売のお知らせ】14th YEAR BIRTHDAY LIVE＠東京ドーム",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101939",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46の「14th YEAR BIRTHDAY LIVE」東京ドーム公演のオフィシャルグッズ販売が決定しました。ライブを記念した限定アイテムが多数登場し、ファン必見のラインナップです。",
-    "bullets": [
-      "14th YEAR BIRTHDAY LIVEオフィシャルグッズ販売開始。",
-      "東京ドーム公演を記念した限定アイテムが多数登場します。"
-    ],
-    "tags": [
-      "#グッズ",
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:58.570Z"
-  },
-  {
-    "id": "ea5044234ecc",
-    "title": "「14th YEAR BIRTHDAY LIVE」会場限定！CD/Blu-ray/DVD購入特典が決定！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101938",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "「14th YEAR BIRTHDAY LIVE」の会場でCD/Blu-ray/DVDを購入すると、会場限定の特典がもらえることが決定しました。ライブ参加者はこの機会をお見逃しなく。",
-    "bullets": [
-      "14th YEAR BIRTHDAY LIVE会場限定の購入特典が決定。",
-      "CD/Blu-ray/DVD購入が対象となります。"
-    ],
-    "tags": [
-      "#グッズ",
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:58.570Z"
-  },
-  {
-    "id": "345db91cde03",
-    "title": "「14th YEAR BIRTHDAY LIVE」東京ドームシティとのコラボイベント決定！会場マップも公開 ！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101937",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "「14th YEAR BIRTHDAY LIVE」開催に合わせて、東京ドームシティとのコラボイベントが決定し、会場マップも公開されました。ライブをさらに楽しめる企画が盛りだくさんです。",
-    "bullets": [
-      "14th YEAR BIRTHDAY LIVEと東京ドームシティのコラボイベントが決定。",
-      "会場マップも公開され、ライブを盛り上げます。"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:58.570Z"
-  },
-  {
-    "id": "8fae6b700f62",
-    "title": "金川紗耶1st写真集「好きのグラデーション」書店別購入特典絵柄を公開！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101936",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "金川紗耶さんの1st写真集「好きのグラデーション」の書店別購入特典絵柄が公開されました。どの書店で予約・購入するか迷っている方は、ぜひ特典絵柄を比較して決めてください。",
-    "bullets": [
-      "金川紗耶1st写真集「好きのグラデーション」の書店別特典絵柄が公開。",
-      "購入を検討している方は特典を比較できます。"
-    ],
-    "tags": [
-      "#写真集",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:58.570Z"
-  },
-  {
-    "id": "183425b1c82f",
-    "title": "MYNOGIにて「14th YEAR BIRTHDAY LIVE」盛り上げイベント実施！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/101935",
-    "date": "2026-05-15",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "MYNOGIにて「14th YEAR BIRTHDAY LIVE」を盛り上げるイベントが実施されます。ライブをより一層楽しむための企画が用意されていますので、ファンの方はぜひ参加して一緒に盛り上がりましょう。",
-    "bullets": [
-      "MYNOGIで14th YEAR BIRTHDAY LIVE盛り上げイベントが開催されます。",
-      "ライブをさらに楽しむための企画が用意されています。"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ",
-      "#継続ウォッチ"
-    ],
-    "fetchedAt": "2026-05-16T00:06:58.570Z"
-  },
-  {
-    "id": "97461040ac61",
-    "title": "リリース\n      2026.05.15\n    \n    15th Double A-side Single『Lonesome rabbit / What'",
-    "url": "https://sakurazaka46.com/s/s46/news/detail/R00570",
-    "date": "2026-05-15",
-    "group": "sakurazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "櫻坂46の15thシングルが2026年5月15日にリリースされることが決定しました。ダブルAサイドシングルで、『Lonesome rabbit』と『What'』の2曲が収録されます。ファン待望の新曲リリース情報をお見逃しなく。",
-    "bullets": [
-      "櫻坂46 15thシングルリリース決定",
-      "2026年5月15日発売",
-      "ダブルAサイドシングル『Lonesome rabbit / What'』"
-    ],
-    "tags": [
-      "#新曲",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-05-16T00:07:15.454Z"
-  },
-  {
-    "id": "a98a8e7b7826",
-    "title": "17thシングル『Kind of love』収録曲『Empty』MUSIC VIDEO公開&先行配信スタート！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/R00543",
-    "date": "2026-05-15",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46の17thシングル『Kind of love』に収録されている楽曲『Empty』のミュージックビデオが公開され、同時に先行配信もスタートしました。ファンは最新曲のMVと音源を楽しむことができます。",
-    "bullets": [
-      "17thシングル『Kind of love』収録曲『Empty』のMVが公開されました。",
-      "『Empty』の先行配信も開始されています。"
-    ],
-    "tags": [
-      "#新曲",
-      "#MV"
-    ],
-    "fetchedAt": "2026-05-15T00:13:07.649Z"
   }
 ]
