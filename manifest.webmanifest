@@ -1,0 +1,23 @@
+{
+  "name": "推し活ニュース",
+  "short_name": "推し活",
+  "description": "坂道46グループ推しメン最新情報",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1a0520",
+  "theme_color": "#c084fc",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
