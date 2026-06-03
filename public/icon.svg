@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a0520"/>
+      <stop offset="100%" stop-color="#0d1a2e"/>
+    </linearGradient>
+  </defs>
+  <!-- Background rounded square -->
+  <rect width="100" height="100" rx="22" fill="url(#bg)"/>
+  <!-- 日向坂46: スカイブルー（左） -->
+  <polygon points="20,76 38,35 56,76" fill="#38bdf8" opacity="0.85"/>
+  <!-- 乃木坂46: パープル（中央・最高峰） -->
+  <polygon points="30,76 50,14 70,76" fill="#c084fc" opacity="0.9"/>
+  <!-- 櫻坂46: ピンク（右） -->
+  <polygon points="44,76 62,35 80,76" fill="#f472b6" opacity="0.85"/>
+  <!-- 地平線 -->
+  <rect x="12" y="74" width="76" height="3" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+</svg>
