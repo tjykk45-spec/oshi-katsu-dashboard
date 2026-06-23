@@ -127,3 +127,6 @@ export const KEEP_DAYS = 14;
 
 /** 各グループセクションで表示する最大記事数（page.tsx で使用） */
 export const MAX_PER_GROUP = 10;
+
+/** 最新フェッチ分を「NEW」とみなす時間窓（ms）。cron が1日1回なので6hで隣実行に誤爆しない */
+export const NEW_WINDOW_MS = 6 * 60 * 60 * 1000;

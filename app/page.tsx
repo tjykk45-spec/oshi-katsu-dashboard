@@ -1,9 +1,10 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 import { NewsDataSchema, type Article } from "@/scripts/schema";
-import { MAX_PER_GROUP } from "@/scripts/config";
+import { MAX_PER_GROUP, NEW_WINDOW_MS } from "@/scripts/config";
 import GroupSection from "@/components/GroupSection";
 import PetalCanvas from "@/components/PetalCanvas";
+import HeroCollage from "@/components/HeroCollage";
 
 const GROUPS = [
   { id: "nogizaka46",  label: "乃木坂46", emoji: "🌸", cssClass: "nogi" as const },
@@ -12,11 +13,11 @@ const GROUPS = [
 ];
 
 const MEMBERS = [
-  { name: "遠藤さくら", group: "nogi", avatar: "avatars/endo-sakura.jpg" },
-  { name: "池田瑛紗",   group: "nogi", avatar: "avatars/ikeda-teresa.jpg" },
-  { name: "村井優",     group: "saku", avatar: "avatars/murai-yu.jpg" },
-  { name: "石森璃花",   group: "saku", avatar: "avatars/ishimori-rika.jpg" },
-  { name: "小坂菜緒",   group: "hina", avatar: "avatars/kosaka-nao.jpg" },
+  { name: "遠藤さくら", group: "nogi" as const, avatar: "avatars/endo-sakura.jpg" },
+  { name: "池田瑛紗",   group: "nogi" as const, avatar: "avatars/ikeda-teresa.jpg" },
+  { name: "村井優",     group: "saku" as const, avatar: "avatars/murai-yu.jpg" },
+  { name: "石森璃花",   group: "saku" as const, avatar: "avatars/ishimori-rika.jpg" },
+  { name: "小坂菜緒",   group: "hina" as const, avatar: "avatars/kosaka-nao.jpg" },
 ];
 
 function loadArticles(): Article[] {
@@ -39,10 +40,31 @@ export default function Page() {
       })
     : "–";
 
+  // ── NEW 判定（最新フェッチ分）
+  const fetchTimes = articles.map((a) => Date.parse(a.fetchedAt)).filter(Number.isFinite);
+  const latestFetchMs = fetchTimes.length ? Math.max(...fetchTimes) : 0;
+  const newIds = new Set(
+    articles
+      .filter((a) => {
+        const t = Date.parse(a.fetchedAt);
+        return Number.isFinite(t) && latestFetchMs - t <= NEW_WINDOW_MS;
+      })
+      .map((a) => a.id)
+  );
+
+  // slice 前の全件から算出（ナビ NEW 取りこぼし防止）
+  const hasNew = (gid: string) => articles.some((a) => a.group === gid && newIds.has(a.id));
+
+  // ヒーロー用：新着推しメン名 Set（memberName null を除外）
+  const newMemberNames = new Set(
+    articles
+      .filter((a) => newIds.has(a.id) && a.memberName)
+      .map((a) => a.memberName!)
+  );
+
   const byGroup = Object.fromEntries(
     GROUPS.map((g) => [
       g.id,
-      // 各グループ最大 MAX_PER_GROUP 件まで表示（日付が新しい順）
       articles
         .filter((a) => a.group === g.id)
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -74,56 +96,27 @@ export default function Page() {
           <nav className="group-nav">
             {GROUPS.map((g) => (
               <a key={g.id} href={`#${g.id}`} className={`gnav-btn ${g.cssClass}`}>
-                <span className="gnav-icon">{g.emoji}</span>{g.label}
+                <span className="gnav-icon">{g.emoji}</span>
+                {g.label}
+                {hasNew(g.id) && <span className="gnav-new" aria-label="新着あり">NEW</span>}
               </a>
             ))}
           </nav>
         </header>
 
-        {/* ── HERO ── */}
-        <div className="hero">
-          <div className="hero-flowers">🌸</div>
-          <div className="hero-text">
-            <h2>推しメンの最新情報</h2>
-            <p>遠藤さくら · 池田瑛紗 · 村井優 · 石森璃花 · 小坂菜緒</p>
-          </div>
-        </div>
-
-        {/* ── STATS ── */}
-        <div className="stats-row">
-          {GROUPS.map((g) => (
-            <div key={g.id} className="stat-pill">
-              <div className={`stat-num ${g.cssClass}`}>{byGroup[g.id]?.length ?? 0}</div>
-              <div className="stat-lbl">{g.label.replace("46", "")}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* ── MEMBER STRIP ── */}
-        <div className="member-strip">
-          {MEMBERS.map((m) => (
-            <div key={m.name} className="member-chip">
-              <div className={`member-avatar ${m.group}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={m.avatar} alt={m.name} />
-              </div>
-              <div className="member-name-chip">{m.name}</div>
-              <div className={`member-group-tag ${m.group}`}>
-                {GROUPS.find((g) => g.cssClass === m.group)?.label ?? ""}
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* ── HERO COLLAGE ── */}
+        <HeroCollage members={MEMBERS} newMemberNames={newMemberNames} groups={GROUPS} />
 
         {/* ── GROUP SECTIONS ── */}
-        {GROUPS.map((g, i) => (
-          <div key={g.id}>
-            {i > 0 && <div className="group-divider" />}
-            <GroupSection group={g} articles={byGroup[g.id] ?? []} />
-          </div>
-        ))}
+        <div style={{ marginTop: 24 }}>
+          {GROUPS.map((g, i) => (
+            <div key={g.id}>
+              {i > 0 && <div className="group-divider" />}
+              <GroupSection group={g} articles={byGroup[g.id] ?? []} newIds={newIds} />
+            </div>
+          ))}
+        </div>
 
-        {/* articles が空の場合 */}
         {totalCount === 0 && (
           <div style={{ textAlign: "center", padding: "60px 0", color: "oklch(60% 0 0)" }}>
             <div style={{ fontSize: 36, marginBottom: 12 }}>🌸</div>
@@ -143,7 +136,6 @@ export default function Page() {
         </footer>
       </div>
 
-      {/* デザインのCSS変数をインライン定義（globals.cssからロード済み） */}
       <style>{`
         .page-wrap { font-family: 'Noto Sans JP', sans-serif; }
         header {
@@ -165,10 +157,12 @@ export default function Page() {
         }
         .subtitle { font-size:10px; color:oklch(60% 0 0); letter-spacing:0.1em; }
         .update-badge { font-size:10px; color:oklch(55% 0 0); display:flex; align-items:center; gap:4px; }
+
+        /* ── グループナビ ── */
         .group-nav { display:flex; gap:6px; padding:0 0 12px; overflow-x:auto; scrollbar-width:none; }
         .group-nav::-webkit-scrollbar { display:none; }
         .gnav-btn {
-          flex-shrink:0; display:flex; align-items:center; gap:5px;
+          flex-shrink:0; position:relative; display:flex; align-items:center; gap:5px;
           padding:5px 12px 5px 8px; border-radius:20px;
           font-size:11px; font-weight:700; border:1.5px solid transparent;
           cursor:pointer; text-decoration:none;
@@ -179,39 +173,14 @@ export default function Page() {
         .gnav-btn.saku { background:linear-gradient(135deg,oklch(88% 0.10 5),oklch(92% 0.06 15)); color:var(--saku-text); border-color:oklch(82% 0.10 5); }
         .gnav-btn.hina { background:linear-gradient(135deg,#e8f7fb,#daf4f9); color:#2c7a96; border-color:#b8e5f0; }
         .gnav-icon { font-size:14px; }
-
-        .hero {
-          margin:16px 0 0; padding:18px 20px; border-radius:20px;
-          background:linear-gradient(135deg,oklch(94% 0.05 310/0.8) 0%,oklch(95% 0.05 5/0.8) 50%,oklch(96% 0.06 80/0.8) 100%);
-          backdrop-filter:blur(12px); border:1px solid oklch(90% 0.04 320/0.5);
-          display:flex; align-items:center; gap:14px;
+        .gnav-new {
+          margin-left:3px; padding:1px 5px; border-radius:8px;
+          background: oklch(63% 0.22 25); color:#fff;
+          font-size:8.5px; font-weight:800; letter-spacing:0.05em;
+          animation: pulse-dot 2s ease-in-out infinite;
         }
-        .hero-flowers { font-size:32px; flex-shrink:0; }
-        .hero-text h2 { font-family:'Shippori Mincho',serif; font-size:15px; font-weight:700; color:oklch(28% 0.08 310); letter-spacing:0.1em; }
-        .hero-text p { font-size:11px; color:oklch(48% 0 0); margin-top:3px; letter-spacing:0.06em; }
 
-        .stats-row { display:flex; gap:8px; margin:10px 0 0; }
-        .stat-pill { flex:1; text-align:center; padding:7px 6px; border-radius:14px; background:oklch(100% 0 0/0.65); border:1px solid oklch(90% 0.04 320/0.5); }
-        .stat-num { font-size:17px; font-weight:700; }
-        .stat-num.nogi { color:var(--nogi-text); }
-        .stat-num.saku { color:var(--saku-text); }
-        .stat-num.hina { color:#2c7a96; }
-        .stat-lbl { font-size:9px; color:oklch(55% 0 0); letter-spacing:0.06em; margin-top:1px; }
-
-        .member-strip { display:flex; gap:8px; padding:18px 0 4px; overflow-x:auto; scrollbar-width:none; }
-        .member-strip::-webkit-scrollbar { display:none; }
-        .member-chip { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:5px; }
-        .member-avatar { width:66px; height:66px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; position:relative; overflow:hidden; animation:avatar-glow 3s ease-in-out infinite; }
-        .member-avatar img { width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:50%; }
-        .member-avatar.nogi { background:linear-gradient(135deg,oklch(88% 0.12 310),oklch(82% 0.16 330)); border:3px solid oklch(78% 0.14 310); box-shadow:0 0 0 2px oklch(92% 0.07 310); }
-        .member-avatar.saku { background:linear-gradient(135deg,oklch(86% 0.14 355),oklch(82% 0.18 10)); border:3px solid oklch(76% 0.16 5); box-shadow:0 0 0 2px oklch(92% 0.07 5); }
-        .member-avatar.hina { background:linear-gradient(135deg,#d9f0f7,#c5e8f2); border:3px solid #7cc7e8; box-shadow:0 0 0 2px #e8f7fb; }
-        .member-name-chip { font-size:9.5px; font-weight:500; color:oklch(40% 0 0); white-space:nowrap; letter-spacing:0.04em; }
-        .member-group-tag { font-size:8px; padding:1px 6px; border-radius:10px; font-weight:700; letter-spacing:0.06em; }
-        .member-group-tag.nogi { background:var(--nogi-soft); color:var(--nogi-text); }
-        .member-group-tag.saku { background:var(--saku-soft); color:var(--saku-text); }
-        .member-group-tag.hina { background:#e8f7fb; color:#2c7a96; }
-
+        /* ── カード ── */
         .section { padding-top:24px; }
         .section-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
         .section-emblem { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
@@ -226,6 +195,10 @@ export default function Page() {
         .card-list { display:flex; flex-direction:column; gap:10px; }
 
         .badge-row { display:flex; flex-wrap:wrap; align-items:center; gap:5px; margin-bottom:7px; }
+        .new-badge {
+          font-size:10px; font-weight:800; padding:1px 7px; border-radius:10px;
+          background: oklch(63% 0.22 25); color:#fff; letter-spacing:0.05em;
+        }
         .member-badge { font-size:10.5px; font-weight:700; padding:2px 9px 2px 9px; border-radius:14px; letter-spacing:0.04em; }
         .member-badge.nogi { background:var(--nogi-main); color:#fff; }
         .member-badge.saku { background:var(--saku-main); color:#fff; }
@@ -253,6 +226,10 @@ export default function Page() {
         .read-more.saku { color:var(--saku-text); }
         .read-more.hina { color:#2c7a96; }
         .group-divider { margin:30px 0 0; height:1px; background:linear-gradient(90deg,transparent,oklch(86% 0.04 320),transparent); }
+
+        @media (prefers-reduced-motion: reduce) {
+          .gnav-new { animation: none; }
+        }
       `}</style>
     </>
   );

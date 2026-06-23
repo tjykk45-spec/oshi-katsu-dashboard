@@ -93,9 +93,9 @@ details.card-hina > summary { border-left: 3.5px solid var(--hina-main); }
 
 /* セクション fade-up */
 .section { opacity: 0; transform: translateY(16px); animation: fade-up 0.5s ease forwards; }
-#nogizaka   { animation-delay: 0.1s; }
-#sakurazaka { animation-delay: 0.25s; }
-#hinatazaka { animation-delay: 0.4s; }
+#nogizaka46   { animation-delay: 0.1s; }
+#sakurazaka46 { animation-delay: 0.25s; }
+#hinatazaka46 { animation-delay: 0.4s; }
 @keyframes fade-up { to { opacity: 1; transform: none; } }
 
 /* アバター glow */

@@ -11,6 +11,7 @@ interface GroupMeta {
 interface Props {
   group: GroupMeta;
   articles: Article[];
+  newIds: Set<string>;
 }
 
 const SECTION_BG: Record<string, string> = {
@@ -25,7 +26,7 @@ const SECTION_BORDER: Record<string, string> = {
   hina: "1px solid rgba(160,218,240,0.5)",
 };
 
-export default function GroupSection({ group, articles }: Props) {
+export default function GroupSection({ group, articles, newIds }: Props) {
   if (articles.length === 0) return null;
   const g = group.cssClass;
 
@@ -48,7 +49,7 @@ export default function GroupSection({ group, articles }: Props) {
       >
         <div className="card-list">
           {articles.map((article) => (
-            <NewsCard key={article.id} article={article} />
+            <NewsCard key={article.id} article={article} isNew={newIds.has(article.id)} />
           ))}
         </div>
       </div>

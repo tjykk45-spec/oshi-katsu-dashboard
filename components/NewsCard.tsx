@@ -14,9 +14,10 @@ const BULLET_CHAR: Record<Group, string> = {
 
 interface Props {
   article: Article;
+  isNew?: boolean;
 }
 
-export default function NewsCard({ article }: Props) {
+export default function NewsCard({ article, isNew }: Props) {
   const g = GROUP_CSS[article.group] ?? "nogi";
   const sourceLabel = article.source === "blog" ? "ブログ" : "公式ニュース";
 
@@ -27,6 +28,7 @@ export default function NewsCard({ article }: Props) {
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* バッジ行 */}
             <div className="badge-row">
+              {isNew && <span className="new-badge" aria-label="新着">NEW</span>}
               {article.memberName ? (
                 <span className={`member-badge ${g}`}>{article.memberName}</span>
               ) : (
