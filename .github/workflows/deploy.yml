@@ -1,0 +1,36 @@
+name: Deploy on Push
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build Next.js static export
+        run: npm run build
+
+      - name: Deploy to gh-pages branch
+        run: |
+          touch out/.nojekyll
+          npx gh-pages -d out -t \
+            --repo https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git \
+            -u "oshi-bot <actions@github.com>" \
+            -m "deploy: $(date +'%Y-%m-%d %H:%M')"
