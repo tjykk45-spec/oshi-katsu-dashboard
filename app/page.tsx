@@ -1,24 +1,43 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 import { NewsDataSchema, type Article } from "@/scripts/schema";
-import { MAX_PER_GROUP, NEW_WINDOW_MS } from "@/scripts/config";
+import {
+  MAX_PER_GROUP,
+  NEW_WINDOW_MS,
+  GROUPS as GROUP_CONFIG,
+  MEMBERS as MEMBER_CONFIG,
+  type GroupId,
+} from "@/scripts/config";
 import GroupSection from "@/components/GroupSection";
 import PetalCanvas from "@/components/PetalCanvas";
 import HeroCollage from "@/components/HeroCollage";
+import type { AvatarInfo } from "@/components/NewsCard";
 
-const GROUPS = [
-  { id: "nogizaka46",  label: "乃木坂46", emoji: "🌸", cssClass: "nogi" as const },
-  { id: "sakurazaka46", label: "櫻坂46",  emoji: "🌹", cssClass: "saku" as const },
-  { id: "hinatazaka46", label: "日向坂46", emoji: "🌻", cssClass: "hina" as const },
-];
+const GROUP_ORDER: GroupId[] = ["nogizaka46", "sakurazaka46", "hinatazaka46"];
 
-const MEMBERS = [
-  { name: "遠藤さくら", group: "nogi" as const, avatar: "avatars/endo-sakura.jpg" },
-  { name: "池田瑛紗",   group: "nogi" as const, avatar: "avatars/ikeda-teresa.jpg" },
-  { name: "村井優",     group: "saku" as const, avatar: "avatars/murai-yu.jpg" },
-  { name: "石森璃花",   group: "saku" as const, avatar: "avatars/ishimori-rika.jpg" },
-  { name: "小坂菜緒",   group: "hina" as const, avatar: "avatars/kosaka-nao.jpg" },
-];
+// scripts/config.ts（SSOT）から表示用に整形
+const GROUPS = GROUP_ORDER.map((id) => ({
+  id,
+  label: GROUP_CONFIG[id].label,
+  emoji: GROUP_CONFIG[id].emoji,
+  cssClass: GROUP_CONFIG[id].cssClass,
+}));
+
+const MEMBERS = MEMBER_CONFIG.map((m) => ({
+  name: m.name,
+  group: GROUP_CONFIG[m.group].cssClass,
+  avatar: `avatars/${m.avatar}`,
+  imageScale: m.imageScale,
+  imagePosition: m.imagePosition,
+}));
+
+// メンバー名 → カードのバッジ用アバター情報
+const MEMBER_AVATARS = new Map<string, AvatarInfo>(
+  MEMBER_CONFIG.map((m) => [
+    m.name,
+    { src: `avatars/${m.avatar}`, scale: m.imageScale, position: m.imagePosition },
+  ])
+);
 
 function loadArticles(): Article[] {
   try {
@@ -54,13 +73,6 @@ export default function Page() {
 
   // slice 前の全件から算出（ナビ NEW 取りこぼし防止）
   const hasNew = (gid: string) => articles.some((a) => a.group === gid && newIds.has(a.id));
-
-  // ヒーロー用：新着推しメン名 Set（memberName null を除外）
-  const newMemberNames = new Set(
-    articles
-      .filter((a) => newIds.has(a.id) && a.memberName)
-      .map((a) => a.memberName!)
-  );
 
   const byGroup = Object.fromEntries(
     GROUPS.map((g) => [
@@ -105,14 +117,14 @@ export default function Page() {
         </header>
 
         {/* ── HERO COLLAGE ── */}
-        <HeroCollage members={MEMBERS} newMemberNames={newMemberNames} groups={GROUPS} />
+        <HeroCollage members={MEMBERS} groups={GROUPS} />
 
         {/* ── GROUP SECTIONS ── */}
         <div style={{ marginTop: 24 }}>
           {GROUPS.map((g, i) => (
             <div key={g.id}>
               {i > 0 && <div className="group-divider" />}
-              <GroupSection group={g} articles={byGroup[g.id] ?? []} newIds={newIds} />
+              <GroupSection group={g} articles={byGroup[g.id] ?? []} newIds={newIds} memberAvatars={MEMBER_AVATARS} />
             </div>
           ))}
         </div>
@@ -194,16 +206,26 @@ export default function Page() {
         .section-count { font-size:10px; color:oklch(60% 0 0); margin-top:1px; letter-spacing:0.06em; }
         .card-list { display:flex; flex-direction:column; gap:10px; }
 
+        .card-inner { display:flex; align-items:flex-start; gap:10px; }
+        .card-body { flex:1; min-width:0; }
         .badge-row { display:flex; flex-wrap:wrap; align-items:center; gap:5px; margin-bottom:7px; }
         .new-badge {
           font-size:10px; font-weight:800; padding:1px 7px; border-radius:10px;
           background: oklch(63% 0.22 25); color:#fff; letter-spacing:0.05em;
         }
-        .member-badge { font-size:10.5px; font-weight:700; padding:2px 9px 2px 9px; border-radius:14px; letter-spacing:0.04em; }
+        .member-badge {
+          font-size:10.5px; font-weight:700; padding:2px 9px 2px 4px; border-radius:14px;
+          letter-spacing:0.04em; display:inline-flex; align-items:center; gap:5px;
+        }
         .member-badge.nogi { background:var(--nogi-main); color:#fff; }
         .member-badge.saku { background:var(--saku-main); color:#fff; }
         .member-badge.hina { background:var(--hina-main); color:#fff; }
-        .member-badge.group { background:oklch(93% 0 0); color:oklch(45% 0 0); }
+        .member-badge.group { background:oklch(93% 0 0); color:oklch(45% 0 0); padding:2px 9px; }
+        .badge-avatar {
+          width:20px; height:20px; border-radius:50%;
+          object-fit:cover; object-position:center top;
+          border:1.5px solid oklch(100% 0 0 / 0.5); flex-shrink:0;
+        }
         .type-label { font-size:10px; color:oklch(60% 0 0); letter-spacing:0.06em; }
         .date-label { font-size:10px; color:oklch(68% 0 0); }
         .card-title { font-size:13.5px; font-weight:700; color:oklch(20% 0 0); line-height:1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:5px; }

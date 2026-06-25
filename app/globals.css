@@ -20,6 +20,10 @@
   --hina-soft:   oklch(96% 0.04 210);
   --hina-glass:  oklch(98% 0.04 210 / 0.72);
   --hina-text:   #2c7a96;
+
+  /* フォント */
+  --font-jp:  'Noto Sans JP', sans-serif;
+  --font-min: 'Shippori Mincho', serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

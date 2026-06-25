@@ -12,25 +12,43 @@ const BULLET_CHAR: Record<Group, string> = {
   nogi: "✿", saku: "✿", hina: "✿",
 };
 
+export interface AvatarInfo {
+  src: string;
+  scale?: number;
+  position?: string;
+}
+
 interface Props {
   article: Article;
   isNew?: boolean;
+  avatar?: AvatarInfo;
 }
 
-export default function NewsCard({ article, isNew }: Props) {
+export default function NewsCard({ article, isNew, avatar }: Props) {
   const g = GROUP_CSS[article.group] ?? "nogi";
   const sourceLabel = article.source === "blog" ? "ブログ" : "公式ニュース";
 
   return (
     <details className={`news-card card-${g}`}>
       <summary>
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="card-inner">
+          <div className="card-body">
             {/* バッジ行 */}
             <div className="badge-row">
               {isNew && <span className="new-badge" aria-label="新着">NEW</span>}
               {article.memberName ? (
-                <span className={`member-badge ${g}`}>{article.memberName}</span>
+                <span className={`member-badge ${g}`}>
+                  {avatar && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      className="badge-avatar"
+                      src={avatar.src}
+                      alt=""
+                      style={{ objectPosition: avatar.position ?? "center top" }}
+                    />
+                  )}
+                  {article.memberName}
+                </span>
               ) : (
                 <span className="member-badge group">グループ</span>
               )}

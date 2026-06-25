@@ -1,9 +1,11 @@
 "use client";
 
-interface MemberInfo {
+export interface MemberInfo {
   name: string;
   group: "nogi" | "saku" | "hina";
-  avatar: string;
+  avatar: string;        // 画像URL（例: avatars/endo-sakura.jpg）
+  imageScale?: number;   // 拡大率（既定 1）
+  imagePosition?: string; // object-position（既定 "center top"）
 }
 
 interface GroupInfo {
@@ -14,208 +16,132 @@ interface GroupInfo {
 
 interface Props {
   members: MemberInfo[];
-  newMemberNames: Set<string>;
   groups: GroupInfo[];
 }
 
-export default function HeroCollage({ members, newMemberNames, groups }: Props) {
-  // 2–1–2 グリッド: [0,1] [2] [3,4]
-  const row1 = members.slice(0, 2);
-  const row2 = members.slice(2, 3);
-  const row3 = members.slice(3, 5);
+// 配列の並び順 → コラージュの 5 枠（[0]=左の大きい枠 → 右下へ）
+const SLOT_CLASS = ["cp-slot1", "cp-slot2", "cp-slot3", "cp-slot4", "cp-slot5"] as const;
 
-  const groupHref = (g: "nogi" | "saku" | "hina") => {
-    const found = groups.find((x) => x.cssClass === g);
-    return found ? `#${found.id}` : "#";
+function imgStyle(m: MemberInfo): React.CSSProperties {
+  const scale = m.imageScale ?? 1;
+  return {
+    objectPosition: m.imagePosition ?? "center top",
+    transform: scale !== 1 ? `scale(${scale})` : undefined,
+    transformOrigin: "center top",
   };
+}
+
+export default function HeroCollage({ members, groups }: Props) {
+  const slots = members.slice(0, 5);
+  const names = slots.map((m) => m.name);
+  const labelTop = names.slice(0, 2).join(" · ");
+  const labelBottom = names.slice(2).join(" · ");
 
   return (
     <>
-      <div className="hero-collage">
-        <div className="collage-bg-text">🌸 坂道46 🌹 推し活 🌻</div>
-        <div className="collage-row collage-row--outer">
-          {row1.map((m) => <CollageCard key={m.name} m={m} isNew={newMemberNames.has(m.name)} href={groupHref(m.group)} size="sm" />)}
+      <div className="collage-hero">
+        <div className="collage-grid">
+          {slots.map((m, i) => (
+            <div key={m.name} className={`collage-photo ${SLOT_CLASS[i]}`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={m.avatar} alt={m.name} style={imgStyle(m)} loading="eager" />
+            </div>
+          ))}
         </div>
-        <div className="collage-row collage-row--center">
-          {row2.map((m) => <CollageCard key={m.name} m={m} isNew={newMemberNames.has(m.name)} href={groupHref(m.group)} size="lg" />)}
+
+        {/* グループバッジ（左上） */}
+        <div className="collage-badge">
+          {groups.map((g) => (
+            <span key={g.id} className={`cbadge ${g.cssClass}`}>{g.label}</span>
+          ))}
         </div>
-        <div className="collage-row collage-row--outer">
-          {row3.map((m) => <CollageCard key={m.name} m={m} isNew={newMemberNames.has(m.name)} href={groupHref(m.group)} size="sm" />)}
-        </div>
-        <div className="collage-title">
-          <h2>推しメンの最新情報</h2>
-          <p>坂道46 · 推し活ニュースダッシュボード</p>
+
+        {/* タイトルオーバーレイ（下部） */}
+        <div className="collage-title-bar">
+          <h2>推し活ニュース</h2>
+          <div className="collage-members-label">
+            {labelTop}
+            <br />
+            {labelBottom}
+          </div>
         </div>
       </div>
 
       <style>{`
-        .hero-collage {
-          position: relative;
-          margin: 16px 0 0;
-          padding: 24px 12px 20px;
+        .collage-hero {
+          margin: 14px 0 20px;
           border-radius: 24px;
-          background: linear-gradient(
-            145deg,
-            oklch(93% 0.06 310 / 0.85) 0%,
-            oklch(94% 0.07 5 / 0.80) 50%,
-            oklch(95% 0.06 80 / 0.75) 100%
-          );
-          border: 1px solid oklch(88% 0.05 320 / 0.5);
-          backdrop-filter: blur(12px);
           overflow: hidden;
-        }
-        .collage-bg-text {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 11px;
-          letter-spacing: 0.25em;
-          color: oklch(65% 0.06 310 / 0.25);
-          white-space: nowrap;
-          pointer-events: none;
-          user-select: none;
-          font-weight: 700;
-        }
-        .collage-row {
-          display: flex;
-          justify-content: center;
-          gap: 8px;
           position: relative;
+          background: linear-gradient(145deg,
+            oklch(88% 0.09 310) 0%,
+            oklch(88% 0.10 5) 50%,
+            oklch(90% 0.08 200) 100%
+          );
+          box-shadow: 0 8px 32px oklch(0% 0 0 / 0.10);
         }
-        .collage-row--outer { margin-bottom: 6px; }
-        .collage-row--center { margin-bottom: 6px; }
-
-        .collage-card {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 5px;
-          text-decoration: none;
-          position: relative;
-          flex-shrink: 0;
+        .collage-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          gap: 3px;
+          height: 300px;
         }
-        .collage-photo-wrap {
-          position: relative;
-          border-radius: 14px;
-          overflow: visible;
-        }
-        .collage-photo-wrap.sm { width: 88px; }
-        .collage-photo-wrap.lg { width: 112px; }
-        .collage-photo {
-          width: 100%;
-          aspect-ratio: 3 / 4;
+        .collage-photo { position: relative; overflow: hidden; }
+        .collage-photo img {
+          width: 100%; height: 100%;
           object-fit: cover;
           object-position: center top;
-          border-radius: 14px;
           display: block;
         }
-        .collage-photo-wrap.nogi {
-          border: 2.5px solid var(--nogi-main);
-          box-shadow: 0 0 0 3px oklch(90% 0.08 310 / 0.4), 0 6px 20px oklch(0% 0 0 / 0.12);
+        /* 枠の配置（[0]=左の縦長 → 右下へ） */
+        .cp-slot1 { grid-row: 1 / 3; grid-column: 1; }
+        .cp-slot2 { grid-row: 1;     grid-column: 2; }
+        .cp-slot3 { grid-row: 1;     grid-column: 3; }
+        .cp-slot4 { grid-row: 2;     grid-column: 2; }
+        .cp-slot5 { grid-row: 2;     grid-column: 3; }
+
+        /* カラーティント */
+        .collage-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; }
+        .cp-slot1::after { background: linear-gradient(180deg, oklch(75% 0.16 310 / 0.18) 0%, transparent 45%); }
+        .cp-slot2::after { background: linear-gradient(180deg, oklch(72% 0.18 295 / 0.18) 0%, transparent 45%); }
+        .cp-slot3::after { background: linear-gradient(180deg, oklch(68% 0.22 5   / 0.18) 0%, transparent 45%); }
+        .cp-slot4::after { background: linear-gradient(180deg, oklch(68% 0.22 0   / 0.18) 0%, transparent 45%); }
+        .cp-slot5::after { background: linear-gradient(180deg, oklch(65% 0.18 200 / 0.18) 0%, transparent 45%); }
+
+        .collage-title-bar {
+          position: absolute; bottom: 0; left: 0; right: 0;
+          padding: 28px 18px 14px;
+          background: linear-gradient(0deg, oklch(0% 0 0 / 0.45) 0%, transparent 100%);
+          display: flex; align-items: flex-end; justify-content: space-between;
+          pointer-events: none;
         }
-        .collage-photo-wrap.saku {
-          border: 2.5px solid var(--saku-main);
-          box-shadow: 0 0 0 3px oklch(92% 0.08 5 / 0.4), 0 6px 20px oklch(0% 0 0 / 0.12);
+        .collage-title-bar h2 {
+          font-family: var(--font-min, 'Shippori Mincho', serif);
+          font-size: 17px; font-weight: 700; color: #fff;
+          letter-spacing: 0.12em;
+          text-shadow: 0 1px 8px oklch(0% 0 0 / 0.4);
         }
-        .collage-photo-wrap.hina {
-          border: 2.5px solid var(--hina-main);
-          box-shadow: 0 0 0 3px oklch(90% 0.06 210 / 0.4), 0 6px 20px oklch(0% 0 0 / 0.12);
-        }
-        .collage-photo-wrap.lg.nogi {
-          animation: collage-glow-nogi 3.2s ease-in-out infinite;
-        }
-        @keyframes collage-glow-nogi {
-          0%, 100% { box-shadow: 0 0 0 3px oklch(90% 0.08 310 / 0.4), 0 6px 20px oklch(0% 0 0 / 0.12); }
-          50%       { box-shadow: 0 0 0 6px oklch(85% 0.14 310 / 0.5), 0 8px 28px oklch(62% 0.18 310 / 0.2); }
+        .collage-members-label {
+          font-size: 9.5px; color: oklch(95% 0 0 / 0.85);
+          letter-spacing: 0.07em; text-align: right; line-height: 1.6;
+          text-shadow: 0 1px 4px oklch(0% 0 0 / 0.4);
         }
 
-        .collage-new-pill {
-          position: absolute;
-          top: -6px;
-          right: -6px;
-          background: oklch(63% 0.22 25);
-          color: #fff;
-          font-size: 9px;
-          font-weight: 800;
-          padding: 2px 6px;
-          border-radius: 10px;
-          letter-spacing: 0.05em;
-          animation: pulse-dot 2s ease-in-out infinite;
-          z-index: 2;
-          border: 1.5px solid #fff;
+        .collage-badge {
+          position: absolute; top: 12px; left: 12px;
+          display: flex; gap: 4px;
         }
-
-        .collage-name {
-          font-family: 'Shippori Mincho', serif;
-          font-size: 10px;
-          font-weight: 700;
-          color: oklch(30% 0.06 310);
-          white-space: nowrap;
+        .cbadge {
+          font-size: 9px; font-weight: 700;
+          padding: 3px 7px; border-radius: 10px;
+          backdrop-filter: blur(8px);
           letter-spacing: 0.06em;
         }
-        .collage-group-tag {
-          font-size: 8.5px;
-          font-weight: 700;
-          padding: 1px 7px;
-          border-radius: 10px;
-          letter-spacing: 0.05em;
-        }
-        .collage-group-tag.nogi { background: var(--nogi-soft); color: var(--nogi-text); }
-        .collage-group-tag.saku { background: var(--saku-soft); color: var(--saku-text); }
-        .collage-group-tag.hina { background: oklch(94% 0.04 210); color: #2c7a96; }
-
-        .collage-title {
-          text-align: center;
-          margin-top: 14px;
-        }
-        .collage-title h2 {
-          font-family: 'Shippori Mincho', serif;
-          font-size: 14px;
-          font-weight: 700;
-          background: linear-gradient(120deg, var(--nogi-main), var(--saku-main), #2c7a96);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          letter-spacing: 0.1em;
-        }
-        .collage-title p {
-          font-size: 10px;
-          color: oklch(55% 0 0);
-          letter-spacing: 0.08em;
-          margin-top: 3px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .collage-photo-wrap.lg.nogi { animation: none; }
-          .collage-new-pill { animation: none; }
-        }
+        .cbadge.nogi { background: oklch(62% 0.18 310 / 0.85); color: #fff; }
+        .cbadge.saku { background: oklch(60% 0.22 0   / 0.85); color: #fff; }
+        .cbadge.hina { background: #7cc7e8cc; color: #fff; }
       `}</style>
     </>
-  );
-}
-
-function CollageCard({
-  m,
-  isNew,
-  href,
-  size,
-}: {
-  m: MemberInfo;
-  isNew: boolean;
-  href: string;
-  size: "sm" | "lg";
-}) {
-  const label = m.group === "nogi" ? "乃木坂46" : m.group === "saku" ? "櫻坂46" : "日向坂46";
-  return (
-    <a href={href} className="collage-card" aria-label={`${m.name}（${label}）のニュースへ`}>
-      <div className={`collage-photo-wrap ${size} ${m.group}`}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={m.avatar} alt={`${m.name}（${label}）`} className="collage-photo" loading="eager" />
-        {isNew && <span className="collage-new-pill" aria-label="新着">NEW</span>}
-      </div>
-      <div className="collage-name">{m.name}</div>
-      <div className={`collage-group-tag ${m.group}`}>{label}</div>
-    </a>
   );
 }

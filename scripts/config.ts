@@ -10,7 +10,17 @@ export interface MemberConfig {
   id: string;
   name: string;
   group: GroupId;
-  avatar: string; // public/avatars/ のファイル名
+  avatar: string; // public/avatars/ のファイル名（差し替えたい時はここを変更）
+  /**
+   * 画像の拡大率。1 = 等倍、1.2 = 20%拡大して寄り（顔をアップに）。
+   * コラージュ／バッジで顔が小さい・切れる時に調整する。省略時は 1。
+   */
+  imageScale?: number;
+  /**
+   * 画像の表示位置（CSS object-position）。"center top" / "50% 30%" など。
+   * 顔が見切れる時に上下左右の基準を調整する。省略時は "center top"。
+   */
+  imagePosition?: string;
   blogListUrl: string | null; // ブログ一覧ページURL
 }
 
@@ -32,12 +42,20 @@ export const GROUPS: Record<GroupId, GroupConfig> = {
   hinatazaka46: { label: "日向坂46", emoji: "🌻", cssClass: "hina" },
 };
 
+// 📸 メンバー画像の調整について
+//   - 画像を差し替えたい  → public/avatars/ に画像を置き、avatar のファイル名を変更
+//   - 顔が小さい／大きい  → imageScale を 1.0〜1.5 程度で調整（大きいほど寄る）
+//   - 顔が見切れる        → imagePosition を "center top" / "50% 25%" などで調整
+//   ※ コラージュ・丸アバター・カードのバッジすべてに反映されます。
+//   配列の並び順がコラージュの配置になります（[0]=左の大きい枠 → 右下へ）。
 export const MEMBERS: MemberConfig[] = [
   {
     id: "endo-sakura",
     name: "遠藤さくら",
     group: "nogizaka46",
     avatar: "endo-sakura.jpg",
+    imageScale: 1,
+    imagePosition: "center top",
     blogListUrl: "https://www.nogizaka46.com/s/n46/api/list/blog?ct=48006&rw=5",
   },
   {
@@ -45,6 +63,8 @@ export const MEMBERS: MemberConfig[] = [
     name: "池田瑛紗",
     group: "nogizaka46",
     avatar: "ikeda-teresa.jpg",
+    imageScale: 1,
+    imagePosition: "center top",
     blogListUrl: "https://www.nogizaka46.com/s/n46/api/list/blog?ct=55397&rw=5",
   },
   {
@@ -52,6 +72,8 @@ export const MEMBERS: MemberConfig[] = [
     name: "村井優",
     group: "sakurazaka46",
     avatar: "murai-yu.jpg",
+    imageScale: 1,
+    imagePosition: "center top",
     blogListUrl: "https://sakurazaka46.com/s/s46/diary/blog/list?ima=0000&ct=67",
   },
   {
@@ -59,6 +81,8 @@ export const MEMBERS: MemberConfig[] = [
     name: "石森璃花",
     group: "sakurazaka46",
     avatar: "ishimori-rika.jpg",
+    imageScale: 1,
+    imagePosition: "center top",
     // ct は石森璃花のメンバーID（ブログ一覧ページから確認）
     blogListUrl: "https://sakurazaka46.com/s/s46/diary/blog/list?ima=0000&ct=59",
   },
@@ -67,6 +91,8 @@ export const MEMBERS: MemberConfig[] = [
     name: "小坂菜緒",
     group: "hinatazaka46",
     avatar: "kosaka-nao.jpg",
+    imageScale: 1,
+    imagePosition: "center top",
     blogListUrl: "https://www.hinatazaka46.com/s/official/diary/member/list?ct=14",
   },
 ];
