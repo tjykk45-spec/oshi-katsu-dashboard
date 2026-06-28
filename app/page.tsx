@@ -175,20 +175,22 @@ export default function Page() {
         .group-nav::-webkit-scrollbar { display:none; }
         .gnav-btn {
           flex-shrink:0; position:relative; display:flex; align-items:center; gap:5px;
-          padding:5px 12px 5px 8px; border-radius:20px;
-          font-size:11px; font-weight:700; border:1.5px solid transparent;
+          padding:6px 14px 6px 10px; border-radius:20px; min-height:36px;
+          font-size:11px; font-weight:700; border:2px solid transparent;
           cursor:pointer; text-decoration:none;
-          transition:transform 0.15s ease; letter-spacing:0.04em;
+          box-shadow: 0 2px 6px oklch(0% 0 0 / 0.12);
+          transition:transform 0.15s ease, filter 0.15s ease; letter-spacing:0.04em;
         }
-        .gnav-btn:hover { transform:translateY(-1px); }
-        .gnav-btn.nogi { background:linear-gradient(135deg,oklch(86% 0.10 310),oklch(91% 0.07 330)); color:var(--nogi-text); border-color:oklch(80% 0.10 310); }
-        .gnav-btn.saku { background:linear-gradient(135deg,oklch(88% 0.10 5),oklch(92% 0.06 15)); color:var(--saku-text); border-color:oklch(82% 0.10 5); }
-        .gnav-btn.hina { background:linear-gradient(135deg,#e8f7fb,#daf4f9); color:#2c7a96; border-color:#b8e5f0; }
+        .gnav-btn:hover { transform:translateY(-2px); filter:brightness(0.90); }
+        .gnav-btn:active { transform:translateY(0); filter:brightness(0.82); }
+        .gnav-btn.nogi { background:linear-gradient(135deg,oklch(72% 0.18 312),oklch(78% 0.14 328)); color:#fff; border-color:oklch(62% 0.20 312); }
+        .gnav-btn.saku { background:linear-gradient(135deg,oklch(68% 0.18 5),oklch(74% 0.14 18)); color:#fff; border-color:oklch(58% 0.20 5); }
+        .gnav-btn.hina { background:linear-gradient(135deg,oklch(68% 0.12 215),oklch(74% 0.10 205)); color:#fff; border-color:oklch(58% 0.14 215); }
         .gnav-icon { font-size:14px; }
         .gnav-new {
-          margin-left:3px; padding:1px 5px; border-radius:8px;
-          background: oklch(63% 0.22 25); color:#fff;
-          font-size:8.5px; font-weight:800; letter-spacing:0.05em;
+          margin-left:3px; padding:2px 6px; border-radius:8px;
+          background: oklch(55% 0.26 25); color:#fff;
+          font-size:9.5px; font-weight:800; letter-spacing:0.05em;
           animation: pulse-dot 2s ease-in-out infinite;
         }
 
