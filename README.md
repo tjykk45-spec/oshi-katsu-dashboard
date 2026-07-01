@@ -16,6 +16,7 @@
 | 保持期間 | `KEEP_DAYS` | `scripts/config.ts` | `14` (日) | `data/news.json` に何日分保持するか |
 | 各グループの表示上限 | `MAX_PER_GROUP` | `scripts/config.ts` | `10` (件) | 1グループあたり最大何件表示するか |
 | 監視対象メンバー | `MEMBERS` | `scripts/config.ts` | (5名) | 追加・変更したい場合 |
+| メンバー画像 | `MEMBERS[].avatar` / `imageScale` / `imagePosition` | `scripts/config.ts` | (各メンバー) | 画像の差し替え・拡大縮小・表示位置 |
 | 許可タグ | `ALLOWED_TAGS` | `scripts/config.ts` | (18種) | AIが付与するタグの候補 |
 | 自動実行時刻 | `cron` | `.github/workflows/update-data.yml` | `0 21 * * *` (UTC=JST 06:00) | 毎日のフェッチ時刻 |
 
@@ -26,6 +27,13 @@
 
 **「各グループ5件まで表示にしたい」**
 → `scripts/config.ts` の `MAX_PER_GROUP = 10` を `MAX_PER_GROUP = 5` に変更
+
+**「メンバーの画像を差し替えたい」**
+→ `public/avatars/` に画像を置き、`scripts/config.ts` の該当メンバーの `avatar` をそのファイル名に変更
+
+**「顔が小さい／見切れるので調整したい」**
+→ 該当メンバーの `imageScale`（拡大率。`1` = 等倍、`1.3` で寄り）と `imagePosition`（表示位置。`"center top"` / `"50% 25%"` など）を調整
+　※ トップのコラージュ・カードの丸アバターすべてに反映されます
 
 変更後はビルド & デプロイが必要です（下記コマンド参照）。
 
