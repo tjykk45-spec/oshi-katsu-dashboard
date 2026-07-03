@@ -8,12 +8,17 @@ import {
   MEMBERS as MEMBER_CONFIG,
   type GroupId,
 } from "@/scripts/config";
-import GroupSection from "@/components/GroupSection";
+import { todayJst, collectUpcomingBirthdays } from "@/lib/birthday";
+import NewsExplorer from "@/components/NewsExplorer";
+import BirthdayBanner from "@/components/BirthdayBanner";
 import PetalCanvas from "@/components/PetalCanvas";
-import HeroCollage from "@/components/HeroCollage";
 import type { AvatarInfo } from "@/components/NewsCard";
 
 const GROUP_ORDER: GroupId[] = ["nogizaka46", "sakurazaka46", "hinatazaka46"];
+
+// バナー表示ウィンドウ（日）。7日以内は強調表示に切り替わる
+const BIRTHDAY_WINDOW_DAYS = 14;
+const BIRTHDAY_HIGHLIGHT_DAYS = 7;
 
 // scripts/config.ts（SSOT）から表示用に整形
 const GROUPS = GROUP_ORDER.map((id) => ({
@@ -32,7 +37,7 @@ const MEMBERS = MEMBER_CONFIG.map((m) => ({
 }));
 
 // メンバー名 → カードのバッジ用アバター情報
-const MEMBER_AVATARS = new Map<string, AvatarInfo>(
+const MEMBER_AVATARS: Record<string, AvatarInfo> = Object.fromEntries(
   MEMBER_CONFIG.map((m) => [
     m.name,
     { src: `avatars/${m.avatar}`, scale: m.imageScale, position: m.imagePosition },
@@ -50,7 +55,9 @@ function loadArticles(): Article[] {
 }
 
 export default function Page() {
-  const articles = loadArticles();
+  const articles = loadArticles().sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
   const updatedAt = articles[0]?.fetchedAt
     ? new Date(articles[0].fetchedAt).toLocaleString("ja-JP", {
         timeZone: "Asia/Tokyo",
@@ -62,28 +69,22 @@ export default function Page() {
   // ── NEW 判定（最新フェッチ分）
   const fetchTimes = articles.map((a) => Date.parse(a.fetchedAt)).filter(Number.isFinite);
   const latestFetchMs = fetchTimes.length ? Math.max(...fetchTimes) : 0;
-  const newIds = new Set(
-    articles
-      .filter((a) => {
-        const t = Date.parse(a.fetchedAt);
-        return Number.isFinite(t) && latestFetchMs - t <= NEW_WINDOW_MS;
-      })
-      .map((a) => a.id)
-  );
+  const newIds = articles
+    .filter((a) => {
+      const t = Date.parse(a.fetchedAt);
+      return Number.isFinite(t) && latestFetchMs - t <= NEW_WINDOW_MS;
+    })
+    .map((a) => a.id);
 
-  // slice 前の全件から算出（ナビ NEW 取りこぼし防止）
-  const hasNew = (gid: string) => articles.some((a) => a.group === gid && newIds.has(a.id));
-
-  const byGroup = Object.fromEntries(
-    GROUPS.map((g) => [
-      g.id,
-      articles
-        .filter((a) => a.group === g.id)
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, MAX_PER_GROUP),
-    ])
-  );
+  const hasNew = (gid: string) => articles.some((a) => a.group === gid && newIds.includes(a.id));
   const totalCount = articles.length;
+
+  // ── 誕生日カウントダウン（JST 明示。GitHub Actions ランナーは UTC のため素朴な new Date() だとズレる）
+  const today = todayJst();
+  const birthdayEntries = collectUpcomingBirthdays(MEMBER_CONFIG, today, BIRTHDAY_WINDOW_DAYS);
+  const celebratingNames = birthdayEntries
+    .filter((b) => b.daysUntil <= BIRTHDAY_HIGHLIGHT_DAYS)
+    .map((b) => b.name);
 
   return (
     <>
@@ -103,6 +104,7 @@ export default function Page() {
                 <span className="live-dot" />
                 {updatedAt}
               </span>
+              {newIds.length > 0 && <span className="new-count">新着{newIds.length}件</span>}
             </div>
           </div>
           <nav className="group-nav">
@@ -116,18 +118,19 @@ export default function Page() {
           </nav>
         </header>
 
-        {/* ── HERO COLLAGE ── */}
-        <HeroCollage members={MEMBERS} groups={GROUPS} />
+        {/* ── 誕生日カウントダウン（非sticky） ── */}
+        <BirthdayBanner entries={birthdayEntries} />
 
-        {/* ── GROUP SECTIONS ── */}
-        <div style={{ marginTop: 24 }}>
-          {GROUPS.map((g, i) => (
-            <div key={g.id}>
-              {i > 0 && <div className="group-divider" />}
-              <GroupSection group={g} articles={byGroup[g.id] ?? []} newIds={newIds} memberAvatars={MEMBER_AVATARS} />
-            </div>
-          ))}
-        </div>
+        {/* ── HERO COLLAGE + 検索・絞り込み・記事一覧 ── */}
+        <NewsExplorer
+          articles={articles}
+          groups={GROUPS}
+          members={MEMBERS}
+          memberAvatars={MEMBER_AVATARS}
+          newIds={newIds}
+          celebratingNames={celebratingNames}
+          pageSize={MAX_PER_GROUP}
+        />
 
         {totalCount === 0 && (
           <div style={{ textAlign: "center", padding: "60px 0", color: "oklch(60% 0 0)" }}>
@@ -168,7 +171,9 @@ export default function Page() {
           letter-spacing:0.06em;
         }
         .subtitle { font-size:10px; color:oklch(60% 0 0); letter-spacing:0.1em; }
+        .header-meta { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
         .update-badge { font-size:10px; color:oklch(55% 0 0); display:flex; align-items:center; gap:4px; }
+        .new-count { font-size:9.5px; font-weight:700; color:oklch(55% 0.20 25); }
 
         /* ── グループナビ ── */
         .group-nav { display:flex; gap:6px; padding:0 0 12px; overflow-x:auto; scrollbar-width:none; }

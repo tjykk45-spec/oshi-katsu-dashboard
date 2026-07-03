@@ -60,6 +60,35 @@ function buildPrompt(articles: RawArticle[]): string {
 // バッチサイズ: 無料枠 5RPM に合わせて1回のコールで複数記事を処理
 const BATCH_SIZE = 5;
 
+type BatchItem = { summary: string; bullets: string[]; tags: string[] };
+
+async function callGeminiBatch(
+  ai: GoogleGenAI,
+  model: string,
+  batch: RawArticle[]
+): Promise<BatchItem[]> {
+  const res = await ai.models.generateContent({
+    model,
+    contents: [{ role: "user", parts: [{ text: buildPrompt(batch) }] }],
+    config: {
+      systemInstruction: SYSTEM_INSTRUCTION,
+      responseMimeType: "application/json",
+      responseSchema: BATCH_JSON_SCHEMA,
+      temperature: 0.3,
+    },
+  });
+
+  const candidate = res.candidates?.[0];
+  if (candidate?.finishReason === "SAFETY") {
+    console.warn(`[AI] Safetyフィルタ`);
+    return [];
+  }
+
+  const text = candidate?.content?.parts?.[0]?.text ?? "";
+  const parsed = JSON.parse(text) as { results: BatchItem[] };
+  return parsed.results;
+}
+
 export async function summarizeArticles(
   rawList: RawArticle[],
   ai: GoogleGenAI
@@ -70,31 +99,30 @@ export async function summarizeArticles(
   // BATCH_SIZE 件ずつ処理
   for (let i = 0; i < rawList.length; i += BATCH_SIZE) {
     const batch = rawList.slice(i, i + BATCH_SIZE);
+    const batchNo = Math.floor(i / BATCH_SIZE) + 1;
 
-    try {
-      const res = await ai.models.generateContent({
-        model,
-        contents: [{ role: "user", parts: [{ text: buildPrompt(batch) }] }],
-        config: {
-          systemInstruction: SYSTEM_INSTRUCTION,
-          responseMimeType: "application/json",
-          responseSchema: BATCH_JSON_SCHEMA,
-          temperature: 0.3,
-        },
-      });
+    // 一時的なエラー（レート制限等）で丸ごと記事を失わないよう、1回だけ再試行する
+    let batchItems: BatchItem[] | null = null;
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        batchItems = await callGeminiBatch(ai, model, batch);
+        break;
+      } catch (err) {
+        console.warn(`[AI] バッチ${batchNo} 失敗（試行${attempt}/2）:`, (err as Error).message.slice(0, 120));
+        if (attempt < 2) {
+          await new Promise((r) => setTimeout(r, 60_000));
+        }
+      }
+    }
 
-      const candidate = res.candidates?.[0];
-      if (candidate?.finishReason === "SAFETY") {
-        console.warn(`[AI] Safetyフィルタ: バッチ${i / BATCH_SIZE + 1}`);
-        continue;
+    if (batchItems) {
+      if (batchItems.length !== batch.length) {
+        console.warn(`[AI] バッチ${batchNo}: 件数不一致（要求${batch.length}件 / 応答${batchItems.length}件）`);
       }
 
-      const text = candidate?.content?.parts?.[0]?.text ?? "";
-      const parsed = JSON.parse(text) as { results: { summary: string; bullets: string[]; tags: string[] }[] };
-
-      parsed.results.forEach((ai, j) => {
+      batchItems.forEach((item, j) => {
         const raw = batch[j];
-        if (!raw || !ai) return;
+        if (!raw || !item) return;
         results.push({
           id: createHash("sha256").update(raw.url).digest("hex").slice(0, 12),
           title: raw.title,
@@ -104,19 +132,19 @@ export async function summarizeArticles(
           memberId: "memberId" in raw ? raw.memberId : null,
           memberName: "memberName" in raw ? raw.memberName : null,
           source: raw.source,
-          summary: ai.summary ?? "",
-          bullets: (ai.bullets ?? []).slice(0, 3),
-          tags: (ai.tags ?? []).slice(0, 3),
+          summary: item.summary ?? "",
+          bullets: (item.bullets ?? []).slice(0, 3),
+          tags: (item.tags ?? []).slice(0, 3),
           fetchedAt: new Date().toISOString(),
         });
       });
 
-      console.log(`[AI] バッチ${Math.floor(i / BATCH_SIZE) + 1}: ${parsed.results.length}件要約`);
-    } catch (err) {
-      console.warn(`[AI] バッチ失敗:`, (err as Error).message.slice(0, 120));
+      console.log(`[AI] バッチ${batchNo}: ${batchItems.length}件要約`);
+    } else {
+      console.warn(`[AI] バッチ${batchNo}: 2回失敗のためスキップ`);
     }
 
-    // 次のバッチまで待機（5RPM = 12秒間隔）
+    // 次のバッチまで待機（5RPM = 13秒間隔）
     if (i + BATCH_SIZE < rawList.length) {
       await new Promise((r) => setTimeout(r, 13_000));
     }

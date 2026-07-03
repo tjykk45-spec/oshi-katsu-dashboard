@@ -22,6 +22,11 @@ export interface MemberConfig {
    */
   imagePosition?: string;
   blogListUrl: string | null; // ブログ一覧ページURL
+  /**
+   * 誕生日 "MM-DD" 形式（例: "06-18"）。空文字なら誕生日カウントダウン非表示。
+   * 実在の方の生年月日なので、公式プロフィール等で確認した正確な値を入力すること。
+   */
+  birthday: string;
 }
 
 export interface SourceConfig {
@@ -57,6 +62,7 @@ export const MEMBERS: MemberConfig[] = [
     imageScale: 1,
     imagePosition: "center top",
     blogListUrl: "https://www.nogizaka46.com/s/n46/api/list/blog?ct=48006&rw=5",
+    birthday: "", // TODO: "MM-DD" 形式で入力（例: "06-18"）
   },
   {
     id: "ikeda-teresa",
@@ -66,6 +72,7 @@ export const MEMBERS: MemberConfig[] = [
     imageScale: 1,
     imagePosition: "center top",
     blogListUrl: "https://www.nogizaka46.com/s/n46/api/list/blog?ct=55397&rw=5",
+    birthday: "", // TODO: "MM-DD" 形式で入力
   },
   {
     id: "murai-yu",
@@ -75,6 +82,7 @@ export const MEMBERS: MemberConfig[] = [
     imageScale: 1,
     imagePosition: "center top",
     blogListUrl: "https://sakurazaka46.com/s/s46/diary/blog/list?ima=0000&ct=67",
+    birthday: "", // TODO: "MM-DD" 形式で入力
   },
   {
     id: "ishimori-rika",
@@ -85,6 +93,7 @@ export const MEMBERS: MemberConfig[] = [
     imagePosition: "center top",
     // ct は石森璃花のメンバーID（ブログ一覧ページから確認）
     blogListUrl: "https://sakurazaka46.com/s/s46/diary/blog/list?ima=0000&ct=59",
+    birthday: "", // TODO: "MM-DD" 形式で入力
   },
   {
     id: "kosaka-nao",
@@ -94,6 +103,7 @@ export const MEMBERS: MemberConfig[] = [
     imageScale: 1,
     imagePosition: "center top",
     blogListUrl: "https://www.hinatazaka46.com/s/official/diary/member/list?ct=14",
+    birthday: "", // TODO: "MM-DD" 形式で入力
   },
 ];
 

@@ -10,9 +10,17 @@ interface GroupMeta {
 
 interface Props {
   group: GroupMeta;
+  /** 表示対象（フィルタ適用後・visibleCount で切り詰め済み） */
   articles: Article[];
+  /** フィルタ適用後の総件数（もっと見るボタンの残数表示に使用） */
+  totalMatched: number;
   newIds: Set<string>;
   memberAvatars: Map<string, AvatarInfo>;
+  activeTag: string | null;
+  onTagClick: (tag: string) => void;
+  onShowMore: () => void;
+  /** メンバー/検索/タグのいずれかで絞り込み中かどうか */
+  isFiltering: boolean;
 }
 
 const SECTION_BG: Record<string, string> = {
@@ -27,9 +35,12 @@ const SECTION_BORDER: Record<string, string> = {
   hina: "1px solid rgba(160,218,240,0.5)",
 };
 
-export default function GroupSection({ group, articles, newIds, memberAvatars }: Props) {
-  if (articles.length === 0) return null;
+export default function GroupSection({
+  group, articles, totalMatched, newIds, memberAvatars, activeTag, onTagClick, onShowMore, isFiltering,
+}: Props) {
+  if (totalMatched === 0 && !isFiltering) return null;
   const g = group.cssClass;
+  const remaining = totalMatched - articles.length;
 
   return (
     <section id={group.id} className="section">
@@ -37,9 +48,12 @@ export default function GroupSection({ group, articles, newIds, memberAvatars }:
         <div className={`section-emblem ${g}`}>{group.emoji}</div>
         <div>
           <div className={`section-name ${g}`}>{group.label}</div>
-          <div className="section-count">{articles.length}件のニュース</div>
+          <div className="section-count">{totalMatched}件のニュース</div>
         </div>
       </div>
+      {totalMatched === 0 ? (
+        <div className="section-empty">この絞り込みに一致するニュースはありません</div>
+      ) : (
       <div
         style={{
           background: SECTION_BG[g],
@@ -55,10 +69,18 @@ export default function GroupSection({ group, articles, newIds, memberAvatars }:
               article={article}
               isNew={newIds.has(article.id)}
               avatar={article.memberName ? memberAvatars.get(article.memberName) : undefined}
+              activeTag={activeTag}
+              onTagClick={onTagClick}
             />
           ))}
         </div>
+        {remaining > 0 && (
+          <button type="button" className={`show-more ${g}`} onClick={onShowMore}>
+            もっと見る（+{remaining}件）
+          </button>
+        )}
       </div>
+      )}
     </section>
   );
 }

@@ -22,9 +22,11 @@ interface Props {
   article: Article;
   isNew?: boolean;
   avatar?: AvatarInfo;
+  activeTag?: string | null;
+  onTagClick?: (tag: string) => void;
 }
 
-export default function NewsCard({ article, isNew, avatar }: Props) {
+export default function NewsCard({ article, isNew, avatar, activeTag, onTagClick }: Props) {
   const g = GROUP_CSS[article.group] ?? "nogi";
   const sourceLabel = article.source === "blog" ? "ブログ" : "公式ニュース";
 
@@ -62,7 +64,19 @@ export default function NewsCard({ article, isNew, avatar }: Props) {
             {/* タグ */}
             <div className="tag-row">
               {article.tags.map((tag) => (
-                <span key={tag} className={`tag ${g}`}>{tag}</span>
+                <button
+                  key={tag}
+                  type="button"
+                  className={`tag ${g} ${activeTag === tag ? "tag-active" : ""}`}
+                  disabled={!onTagClick}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onTagClick?.(tag);
+                  }}
+                >
+                  {tag}
+                </button>
               ))}
             </div>
           </div>
