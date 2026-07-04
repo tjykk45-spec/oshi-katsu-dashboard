@@ -23,7 +23,7 @@
 
   /* フォント */
   --font-jp:  'Noto Sans JP', sans-serif;
-  --font-min: 'Shippori Mincho', serif;
+  --font-min: 'Zen Old Mincho', serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

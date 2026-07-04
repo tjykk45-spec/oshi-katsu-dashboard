@@ -92,21 +92,41 @@ export default function Page() {
 
       <div className="page-wrap" style={{ position: "relative", zIndex: 2, maxWidth: 480, margin: "0 auto", padding: "0 16px 80px" }}>
 
-        {/* ── HEADER ── */}
+        {/* ── HEADER（ヒーロー: 非sticky） ── */}
         <header>
-          <div className="header-top">
-            <div className="header-title">
-              <h1>推し活ニュース</h1>
-              <span className="subtitle">坂道46</span>
+          <div className="hero-card">
+            <div className="hero-decor hero-decor-a" />
+            <div className="hero-decor hero-decor-b" />
+            <div className="hero-top">
+              <div className="hero-brand">
+                <div className="hero-badge">
+                  <span>46</span>
+                </div>
+                <div className="hero-brand-text">
+                  <h1>坂道46</h1>
+                  <span className="hero-caption">OSHI-KATSU DASHBOARD</span>
+                </div>
+              </div>
+              <div className="hero-meta">
+                <span className="update-badge">
+                  <span className="live-dot" />
+                  {updatedAt}
+                </span>
+                {newIds.length > 0 && <span className="new-count">新着{newIds.length}件</span>}
+              </div>
             </div>
-            <div className="header-meta">
-              <span className="update-badge">
-                <span className="live-dot" />
-                {updatedAt}
-              </span>
-              {newIds.length > 0 && <span className="new-count">新着{newIds.length}件</span>}
+            <div className="hero-chips">
+              {GROUPS.map((g) => (
+                <a key={g.id} href={`#${g.id}`} className={`hero-chip ${g.cssClass}`}>
+                  <span className="gnav-icon">{g.emoji}</span>
+                  {g.label}
+                  {hasNew(g.id) && <span className="gnav-new" aria-label="新着あり">NEW</span>}
+                </a>
+              ))}
             </div>
           </div>
+
+          {/* ── グループナビ（簡易バー: sticky） ── */}
           <nav className="group-nav">
             {GROUPS.map((g) => (
               <a key={g.id} href={`#${g.id}`} className={`gnav-btn ${g.cssClass}`}>
@@ -153,30 +173,58 @@ export default function Page() {
 
       <style>{`
         .page-wrap { font-family: 'Noto Sans JP', sans-serif; }
-        header {
+
+        /* ── ヒーローヘッダー（非sticky） ── */
+        .hero-card {
+          position: relative; overflow: hidden;
+          margin: 14px 0 0; padding: 24px 20px 20px;
+          border-radius: 26px;
+          background: linear-gradient(135deg, #FFE3EE 0%, #F7D3E9 32%, #E7D2F5 66%, #D9C5F2 100%);
+          box-shadow: 0 14px 34px oklch(0% 0 0 / 0.12);
+        }
+        .hero-decor { position:absolute; border-radius:50%; pointer-events:none; }
+        .hero-decor-a { top:-30px; right:30px; width:130px; height:130px; background:radial-gradient(circle, oklch(100% 0 0 / 0.55), transparent 70%); }
+        .hero-decor-b { bottom:-40px; left:-20px; width:160px; height:160px; background:radial-gradient(circle, oklch(100% 0 0 / 0.35), transparent 70%); }
+        .hero-top { position:relative; display:flex; align-items:flex-start; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+        .hero-brand { display:flex; align-items:center; gap:10px; }
+        .hero-badge {
+          width:46px; height:46px; border-radius:50%; flex-shrink:0;
+          background: linear-gradient(135deg, #EE9AC4, #B79AE8);
+          display:flex; align-items:center; justify-content:center;
+        }
+        .hero-badge span {
+          width:38px; height:38px; border-radius:50%; background: oklch(100% 0 0 / 0.85);
+          display:flex; align-items:center; justify-content:center;
+          font-family: var(--font-min); font-weight:700; font-size:14px; color:#8A5FA8;
+        }
+        .hero-brand-text h1 {
+          font-family: var(--font-min); font-weight:700; font-size:21px;
+          letter-spacing:0.06em; color:#3A2E4A;
+        }
+        .hero-caption { font-size:9.5px; letter-spacing:0.16em; color:#8A6C98; font-weight:600; }
+        .hero-meta { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
+        .update-badge { font-size:10.5px; color:#6A5678; display:flex; align-items:center; gap:4px; font-weight:500; }
+        .new-count { font-size:9.5px; font-weight:700; color:oklch(55% 0.20 25); }
+        .hero-chips { position:relative; display:flex; gap:8px; margin-top:18px; flex-wrap:wrap; }
+        .hero-chip {
+          display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:999px;
+          font-weight:700; font-size:12px; text-decoration:none; color:#fff;
+          box-shadow: 0 6px 14px oklch(0% 0 0 / 0.14);
+        }
+        .hero-chip.nogi { background: linear-gradient(135deg, #C87DDE, #8B6FE0); }
+        .hero-chip.saku { background: linear-gradient(135deg, #F06BA0, #EF5A6F); }
+        .hero-chip.hina { background: linear-gradient(135deg, #4FC3D9, #3FA8D0); }
+
+        /* ── グループナビ（簡易バー: sticky） ── */
+        .group-nav {
           position: sticky; top: 0; z-index: 30;
-          margin: 0 -16px; padding: 0 16px;
+          display:flex; gap:6px; margin:10px -16px 0; padding:8px 16px;
+          overflow-x:auto; scrollbar-width:none;
           background: oklch(100% 0 0 / 0.82);
           backdrop-filter: blur(18px) saturate(1.5);
           -webkit-backdrop-filter: blur(18px) saturate(1.5);
           border-bottom: 1px solid oklch(88% 0.04 320 / 0.5);
         }
-        .header-top { display:flex; align-items:center; justify-content:space-between; padding:14px 0 8px; }
-        .header-title { display:flex; align-items:baseline; gap:8px; }
-        .header-title h1 {
-          font-family: 'Shippori Mincho', serif;
-          font-size:18px; font-weight:700;
-          background: linear-gradient(120deg, var(--nogi-main), var(--saku-main), var(--hina-main));
-          -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-          letter-spacing:0.06em;
-        }
-        .subtitle { font-size:10px; color:oklch(60% 0 0); letter-spacing:0.1em; }
-        .header-meta { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
-        .update-badge { font-size:10px; color:oklch(55% 0 0); display:flex; align-items:center; gap:4px; }
-        .new-count { font-size:9.5px; font-weight:700; color:oklch(55% 0.20 25); }
-
-        /* ── グループナビ ── */
-        .group-nav { display:flex; gap:6px; padding:0 0 12px; overflow-x:auto; scrollbar-width:none; }
         .group-nav::-webkit-scrollbar { display:none; }
         .gnav-btn {
           flex-shrink:0; position:relative; display:flex; align-items:center; gap:5px;
@@ -206,7 +254,7 @@ export default function Page() {
         .section-emblem.nogi { background:linear-gradient(135deg,oklch(86% 0.12 310),oklch(80% 0.18 325)); }
         .section-emblem.saku { background:linear-gradient(135deg,oklch(84% 0.14 358),oklch(78% 0.20 10)); }
         .section-emblem.hina { background:linear-gradient(135deg,#d9f0f7,#c5e8f2); }
-        .section-name { font-family:'Shippori Mincho',serif; font-size:16px; font-weight:700; letter-spacing:0.08em; }
+        .section-name { font-family: var(--font-min); font-size:16px; font-weight:700; letter-spacing:0.08em; }
         .section-name.nogi { color:var(--nogi-text); }
         .section-name.saku { color:var(--saku-text); }
         .section-name.hina { color:#2c7a96; }

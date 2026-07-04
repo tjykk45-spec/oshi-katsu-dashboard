@@ -156,7 +156,7 @@ export default function HeroCollage({ members, groups, selectedNames, onToggleMe
           pointer-events: none;
         }
         .collage-title-bar h2 {
-          font-family: var(--font-min, 'Shippori Mincho', serif);
+          font-family: var(--font-min, 'Zen Old Mincho', serif);
           font-size: 17px; font-weight: 700; color: #fff;
           letter-spacing: 0.12em;
           text-shadow: 0 1px 8px oklch(0% 0 0 / 0.4);
