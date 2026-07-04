@@ -115,15 +115,6 @@ export default function Page() {
                 {newIds.length > 0 && <span className="new-count">新着{newIds.length}件</span>}
               </div>
             </div>
-            <div className="hero-chips">
-              {GROUPS.map((g) => (
-                <a key={g.id} href={`#${g.id}`} className={`hero-chip ${g.cssClass}`}>
-                  <span className="gnav-icon">{g.emoji}</span>
-                  {g.label}
-                  {hasNew(g.id) && <span className="gnav-new" aria-label="新着あり">NEW</span>}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* ── グループナビ（簡易バー: sticky） ── */}
@@ -177,8 +168,8 @@ export default function Page() {
         /* ── ヒーローヘッダー（非sticky） ── */
         .hero-card {
           position: relative; overflow: hidden;
-          margin: 14px 0 0; padding: 24px 20px 20px;
-          border-radius: 26px;
+          margin: 14px 0 0; padding: 18px 20px;
+          border-radius: 22px;
           background: linear-gradient(135deg, #FFE3EE 0%, #F7D3E9 32%, #E7D2F5 66%, #D9C5F2 100%);
           box-shadow: 0 14px 34px oklch(0% 0 0 / 0.12);
         }
@@ -205,15 +196,6 @@ export default function Page() {
         .hero-meta { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
         .update-badge { font-size:10.5px; color:#6A5678; display:flex; align-items:center; gap:4px; font-weight:500; }
         .new-count { font-size:9.5px; font-weight:700; color:oklch(55% 0.20 25); }
-        .hero-chips { position:relative; display:flex; gap:8px; margin-top:18px; flex-wrap:wrap; }
-        .hero-chip {
-          display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:999px;
-          font-weight:700; font-size:12px; text-decoration:none; color:#fff;
-          box-shadow: 0 6px 14px oklch(0% 0 0 / 0.14);
-        }
-        .hero-chip.nogi { background: linear-gradient(135deg, #C87DDE, #8B6FE0); }
-        .hero-chip.saku { background: linear-gradient(135deg, #F06BA0, #EF5A6F); }
-        .hero-chip.hina { background: linear-gradient(135deg, #4FC3D9, #3FA8D0); }
 
         /* ── グループナビ（簡易バー: sticky） ── */
         .group-nav {

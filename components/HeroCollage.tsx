@@ -8,15 +8,8 @@ export interface MemberInfo {
   imagePosition?: string; // object-position（既定 "center top"）
 }
 
-interface GroupInfo {
-  id: string;
-  label: string;
-  cssClass: "nogi" | "saku" | "hina";
-}
-
 interface Props {
   members: MemberInfo[];
-  groups: GroupInfo[];
   /** 現在絞り込み中のメンバー名（空なら全員表示中） */
   selectedNames: Set<string>;
   /** 顔写真タップで絞り込みトグル */
@@ -37,7 +30,7 @@ function imgStyle(m: MemberInfo): React.CSSProperties {
   };
 }
 
-export default function HeroCollage({ members, groups, selectedNames, onToggleMember, celebratingNames }: Props) {
+export default function HeroCollage({ members, selectedNames, onToggleMember, celebratingNames }: Props) {
   const slots = members.slice(0, 5);
   const hasFilter = selectedNames.size > 0;
 
@@ -68,16 +61,8 @@ export default function HeroCollage({ members, groups, selectedNames, onToggleMe
           })}
         </div>
 
-        {/* グループバッジ（左上） */}
-        <div className="collage-badge">
-          {groups.map((g) => (
-            <span key={g.id} className={`cbadge ${g.cssClass}`}>{g.label}</span>
-          ))}
-        </div>
-
         {/* タイトルオーバーレイ（下部） */}
         <div className="collage-title-bar">
-          <h2>推し活ニュース</h2>
           <div className="collage-members-label">
             {hasFilter ? `${selectedNames.size}人で絞り込み中` : "タップで推し絞り込み"}
           </div>
@@ -166,20 +151,6 @@ export default function HeroCollage({ members, groups, selectedNames, onToggleMe
           letter-spacing: 0.07em; text-align: right; line-height: 1.6;
           text-shadow: 0 1px 4px oklch(0% 0 0 / 0.4);
         }
-
-        .collage-badge {
-          position: absolute; top: 12px; left: 12px;
-          display: flex; gap: 4px;
-        }
-        .cbadge {
-          font-size: 9px; font-weight: 700;
-          padding: 3px 7px; border-radius: 10px;
-          backdrop-filter: blur(8px);
-          letter-spacing: 0.06em;
-        }
-        .cbadge.nogi { background: oklch(62% 0.18 310 / 0.85); color: #fff; }
-        .cbadge.saku { background: oklch(60% 0.22 0   / 0.85); color: #fff; }
-        .cbadge.hina { background: #7cc7e8cc; color: #fff; }
 
         @media (prefers-reduced-motion: reduce) {
           .cp-cake { animation: none; }

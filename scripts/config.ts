@@ -159,7 +159,7 @@ export const ALLOWED_TAGS = [
 export const FETCH_HOURS = 48;
 
 /** news.json に保持する日数。これより古いデータは run.ts が自動削除 */
-export const KEEP_DAYS = 14;
+export const KEEP_DAYS = 5;
 
 /** 各グループセクションで表示する最大記事数（page.tsx で使用） */
 export const MAX_PER_GROUP = 10;

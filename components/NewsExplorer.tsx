@@ -71,7 +71,6 @@ export default function NewsExplorer({ articles, groups, members, memberAvatars,
     <>
       <HeroCollage
         members={members}
-        groups={groups}
         selectedNames={selectedMembers}
         onToggleMember={toggleMember}
         celebratingNames={celebratingSet}
