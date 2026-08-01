@@ -1,5 +1,67 @@
 [
   {
+    "id": "37de008fe0b2",
+    "title": "ナイショ",
+    "url": "https://www.nogizaka46.com/s/n46/diary/detail/104756",
+    "date": "2026-08-01",
+    "group": "nogizaka46",
+    "memberId": "endo-sakura",
+    "memberName": "遠藤さくら",
+    "source": "blog",
+    "summary": "遠藤さくらさんの公式ブログが更新されました。42ndシングル「是非に及ばず」が発売中で、全国ツアーも絶賛開催中です。ツアーでは宮城を訪れたことや、夏に読書を楽しむことについて触れています。",
+    "bullets": [
+      "42ndシングル「是非に及ばず」が発売中です。",
+      "全国ツアー中で、遠藤さんは宮城を訪れました。",
+      "夏に読書を楽しむことをファンにおすすめしています。"
+    ],
+    "tags": [
+      "#ブログ更新",
+      "#新曲",
+      "#ライブ"
+    ],
+    "fetchedAt": "2026-08-01T21:46:02.934Z"
+  },
+  {
+    "id": "3cdd7d1062ca",
+    "title": "リリース\n      2026.08.01\n    \n    『HUNTER×HUNTER』×『Unhappy birthday構文』櫻坂46 のコラボMVがジ",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/R00608",
+    "date": "2026-08-01",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46が人気アニメ『HUNTER×HUNTER』と『Unhappy birthday構文』とのコラボレーションミュージックビデオを公開しました。ファン必見の特別なMVです。",
+    "bullets": [
+      "『HUNTER×HUNTER』と櫻坂46のコラボMVが公開されました。",
+      "『Unhappy birthday構文』とのコラボレーションも含まれます。"
+    ],
+    "tags": [
+      "#MV",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-08-01T21:46:02.934Z"
+  },
+  {
+    "id": "b9c34e37b48b",
+    "title": "「日向坂ちゃんねる」にて「【コール動画】3・2・1 Goー! 三期生と過ごす最高の夏がはじまるぞー‼☀️【サラバ　サラバ】」を公開！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/O100290",
+    "date": "2026-08-01",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の公式YouTubeチャンネル「日向坂ちゃんねる」にて、三期生による「サラバ サラバ」のコール動画が公開されました。最高の夏を過ごすための必見コンテンツです。",
+    "bullets": [
+      "「日向坂ちゃんねる」で三期生のコール動画が公開されました。",
+      "「サラバ サラバ」のコールが楽しめます。"
+    ],
+    "tags": [
+      "#SNS更新",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-08-01T21:46:02.934Z"
+  },
+  {
     "id": "7bd803f654e3",
     "title": "「乃木坂配信中」にて「「是非に及ばず」ヒット祈願完全版！ヒット祈願に挑む1日に密着！【メイキングあり】」を公開！",
     "url": "https://www.nogizaka46.com/s/n46/news/detail/102140",
@@ -460,214 +522,5 @@
       "#お知らせ"
     ],
     "fetchedAt": "2026-07-28T21:56:53.055Z"
-  },
-  {
-    "id": "f14c07798f70",
-    "title": "乃木坂46 Mobile限定「のぎモバステーション」第26回配信スタート！メンバーは弓木奈於＆愛宕心響でお届け！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/102136",
-    "date": "2026-07-27",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46 Mobile会員限定の「のぎモバステーション」第26回が配信開始されました。今回は弓木奈於さんと愛宕心響さんが登場し、ファン必見のコンテンツをお届けします。",
-    "bullets": [
-      "乃木坂46 Mobile限定コンテンツ",
-      "第26回配信がスタート",
-      "出演メンバーは弓木奈於と愛宕心響"
-    ],
-    "tags": [
-      "#お知らせ",
-      "#継続ウォッチ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:30.706Z"
-  },
-  {
-    "id": "74d8f15c8e82",
-    "title": "「春よ来い、マジで来い」乃木坂46モバイル先行のお知らせ",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/102131",
-    "date": "2026-07-27",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46の「春よ来い、マジで来い」に関するモバイル先行情報が発表されました。乃木坂46モバイル会員は先行でチケットを申し込むことができますので、詳細を確認してください。",
-    "bullets": [
-      "「春よ来い、マジで来い」のモバイル先行情報",
-      "乃木坂46モバイル会員が対象",
-      "チケット先行受付のお知らせ"
-    ],
-    "tags": [
-      "#チケット",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:30.707Z"
-  },
-  {
-    "id": "8a16fffa8d7d",
-    "title": "その他\n      2026.07.27\n    \n    【櫻坂46メッセージ】「6 QUESTキャンペーン」実施中！QUEST 2スタート！",
-    "url": "https://sakurazaka46.com/s/s46/news/detail/O100089",
-    "date": "2026-07-27",
-    "group": "sakurazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "櫻坂46メッセージアプリで「6 QUESTキャンペーン」が実施されており、本日よりQUEST 2がスタートしました。ファンは新たなミッションに挑戦し、限定コンテンツを楽しめます。",
-    "bullets": [
-      "櫻坂46メッセージアプリのキャンペーン",
-      "「6 QUESTキャンペーン」実施中",
-      "QUEST 2が開始"
-    ],
-    "tags": [
-      "#お知らせ",
-      "#SNS更新",
-      "#継続ウォッチ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:30.707Z"
-  },
-  {
-    "id": "7b95d008dd75",
-    "title": "イベント\n      2026.07.27\n    \n    「Sakurazaka46 ARENA TOUR 2026 -What’s lonesome?-」",
-    "url": "https://sakurazaka46.com/s/s46/news/detail/E00660",
-    "date": "2026-07-27",
-    "group": "sakurazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "櫻坂46のアリーナツアー「Sakurazaka46 ARENA TOUR 2026 -What’s lonesome?-」が開催されます。詳細な日程や会場、チケット情報などは公式サイトでご確認ください。",
-    "bullets": [
-      "櫻坂46のアリーナツアー開催決定",
-      "ツアータイトルは「-What’s lonesome?-」",
-      "詳細は公式サイトで確認"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:30.707Z"
-  },
-  {
-    "id": "435ed93fbdba",
-    "title": "メディア\n      2026.07.27\n    \n    映画『我々は宇宙人』に山﨑天が声優として出演決定！",
-    "url": "https://sakurazaka46.com/s/s46/news/detail/M02154",
-    "date": "2026-07-27",
-    "group": "sakurazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "櫻坂46の山﨑天さんが、映画『我々は宇宙人』に声優として出演することが決定しました。彼女の新たな挑戦に注目が集まります。公開日などの詳細もチェックしましょう。",
-    "bullets": [
-      "山﨑天が映画『我々は宇宙人』に出演",
-      "声優としての出演が決定",
-      "新たな挑戦に注目"
-    ],
-    "tags": [
-      "#TV出演",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:30.707Z"
-  },
-  {
-    "id": "3837157a8e8f",
-    "title": "ミート＆グリート\n      2026.07.27\n    \n    【詳細のお知らせ】15th Single『Lonesome rabbit / What's",
-    "url": "https://sakurazaka46.com/s/s46/news/detail/S00222",
-    "date": "2026-07-27",
-    "group": "sakurazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "櫻坂46の15thシングル「Lonesome rabbit / What's」に関するミート＆グリートの詳細が2026年7月27日に発表されました。ファンは参加方法や日程を確認できます。",
-    "bullets": [
-      "櫻坂46 15thシングル「Lonesome rabbit / What's」の詳細情報",
-      "ミート＆グリートの開催が決定",
-      "2026年7月27日に詳細発表"
-    ],
-    "tags": [
-      "#握手会",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:48.957Z"
-  },
-  {
-    "id": "72c7c04e775f",
-    "title": "日向坂46 ARENA TOUR「ひなくり2026」開催決定！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00869",
-    "date": "2026-07-27",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46のアリーナツアー「ひなくり2026」の開催が決定しました。ファン待望のクリスマスライブツアーで、詳細は今後発表される予定です。",
-    "bullets": [
-      "日向坂46 ARENA TOUR「ひなくり2026」開催決定",
-      "クリスマス時期のアリーナツアー",
-      "詳細は後日発表"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:48.957Z"
-  },
-  {
-    "id": "3403506fdd3e",
-    "title": "山下葉留花・片山紗希　宮崎南警察署 一日署長に就任が決定！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/M02758",
-    "date": "2026-07-27",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46の山下葉留花さんと片山紗希さんが、宮崎南警察署の一日署長に就任することが決定しました。地域貢献活動として、ファンにとっても貴重な機会となりそうです。",
-    "bullets": [
-      "日向坂46 山下葉留花・片山紗希が一日署長に就任",
-      "宮崎南警察署での活動",
-      "地域貢献イベント"
-    ],
-    "tags": [
-      "#お知らせ",
-      "#継続ウォッチ"
-    ],
-    "fetchedAt": "2026-07-27T21:58:48.957Z"
-  },
-  {
-    "id": "285a294d8b0b",
-    "title": "「乃木坂工事中」の最新話「チーム対抗！これいくら金？ 前編」をYouTubeにて公開！【乃木坂配信中】",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/102133",
-    "date": "2026-07-27",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46の冠番組「乃木坂工事中」の最新エピソード「チーム対抗！これいくら金？ 前編」がYouTubeチャンネル「乃木坂配信中」で公開されました。見逃した方やもう一度見たい方はぜひチェックしてください。",
-    "bullets": [
-      "「乃木坂工事中」最新話がYouTube「乃木坂配信中」で公開。",
-      "エピソードタイトルは「チーム対抗！これいくら金？ 前編」です。"
-    ],
-    "tags": [
-      "#TV出演",
-      "#SNS更新"
-    ],
-    "fetchedAt": "2026-07-26T21:52:24.381Z"
-  },
-  {
-    "id": "2db79ed0dc00",
-    "title": "＜次回予告＞「乃木坂工事中」",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/102120",
-    "date": "2026-07-27",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46のレギュラー番組「乃木坂工事中」の次回予告が公開されました。次回の放送内容が気になる方は、公式情報を確認して見逃さないようにしましょう。",
-    "bullets": [
-      "「乃木坂工事中」の次回予告が発表されました。",
-      "次回の放送内容を事前に確認できます。"
-    ],
-    "tags": [
-      "#TV出演",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-07-26T21:52:24.381Z"
   }
 ]
