@@ -1,5 +1,125 @@
 [
   {
+    "id": "60e10d02952e",
+    "title": "8/20(木)21:00より、18th Single ひなた坂46のフォーメーション発表生配信が決定！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/R00568",
+    "date": "2026-08-10",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の18thシングルフォーメーション発表が生配信されることが決定しました。8月20日(木)21:00からなので、見逃さないようにしましょう。",
+    "bullets": [
+      "18thシングルフォーメーション発表",
+      "8月20日(木)21:00より生配信"
+    ],
+    "tags": [
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-08-10T21:33:35.531Z"
+  },
+  {
+    "id": "0d183be46622",
+    "title": "「18th Single ひなた坂46 LIVE」開催決定！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00878",
+    "date": "2026-08-10",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "18thシングルの発売を記念したライブ「18th Single ひなた坂46 LIVE」の開催が決定しました。詳細は後日発表される予定です。",
+    "bullets": [
+      "「18th Single ひなた坂46 LIVE」開催決定",
+      "詳細は後日発表"
+    ],
+    "tags": [
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-08-10T21:33:35.531Z"
+  },
+  {
+    "id": "1da9c7752b2d",
+    "title": "「三期生 LIVE」8/17・8/18 東京公演の公式チケット・トレードが本日18:00よりスタート！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00879",
+    "date": "2026-08-10",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46三期生ライブの8月17日・18日東京公演について、公式チケットトレードが本日18:00から開始されます。チケットを求めている方は忘れずにチェックしてください。",
+    "bullets": [
+      "三期生LIVE東京公演の公式チケットトレード開始",
+      "8月17日・18日の公演が対象",
+      "本日18:00よりスタート"
+    ],
+    "tags": [
+      "#チケット",
+      "#ライブ"
+    ],
+    "fetchedAt": "2026-08-10T21:33:35.531Z"
+  },
+  {
+    "id": "fa0d0caa7ff5",
+    "title": "18thシングル『イチャイチャ虫』のアーティスト写真公開！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/R00567",
+    "date": "2026-08-10",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の18thシングル『イチャイチャ虫』のアーティスト写真が公開されました。新曲の世界観が伝わる素敵な写真なので、ぜひ公式サイトで確認してください。",
+    "bullets": [
+      "18thシングル『イチャイチャ虫』アーティスト写真公開",
+      "公式サイトでチェック可能"
+    ],
+    "tags": [
+      "#新曲",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-08-10T21:33:35.531Z"
+  },
+  {
+    "id": "b8d8e0a63466",
+    "title": "グッズ\n      2026.08.10\n    \n    「Sakurazaka46 ARENA TOUR 2026 -What’s lonesome?-」千",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/G00229",
+    "date": "2026-08-10",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46「Sakurazaka46 ARENA TOUR 2026 -What’s lonesome?-」のツアーグッズに関する情報が公開されました。ライブ参戦予定の方は、ぜひチェックして準備しましょう。",
+    "bullets": [
+      "「Sakurazaka46 ARENA TOUR 2026 -What’s lonesome?-」グッズ情報公開",
+      "ツアー最終公演のグッズ情報と推測"
+    ],
+    "tags": [
+      "#グッズ",
+      "#ライブ"
+    ],
+    "fetchedAt": "2026-08-10T21:33:35.531Z"
+  },
+  {
+    "id": "e95a36397d78",
+    "title": "グッズ\n      2026.08.10\n    \n    「Sakurazaka46 ARENA TOUR 2026 -What’s lonesome?-」第",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/G00228",
+    "date": "2026-08-10",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46アリーナツアー2026「-What’s lonesome?-」の公式グッズ情報が公開されました。ツアーをさらに楽しめる限定アイテムや定番グッズが多数登場していますので、ぜひチェックしてください。",
+    "bullets": [
+      "「Sakurazaka46 ARENA TOUR 2026 -What’s lonesome?-」の公式グッズが発表されました。",
+      "限定アイテムや定番グッズなど、ファン必見のラインナップです。"
+    ],
+    "tags": [
+      "#グッズ",
+      "#ライブ"
+    ],
+    "fetchedAt": "2026-08-10T21:33:52.410Z"
+  },
+  {
     "id": "ce9bdef1af4a",
     "title": "「乃木坂工事中」の最新話「新キャプテンと一致団結 前編」をYouTubeにて公開！【乃木坂配信中】",
     "url": "https://www.nogizaka46.com/s/n46/news/detail/102165",
@@ -565,150 +685,5 @@
       "#TV出演"
     ],
     "fetchedAt": "2026-08-07T01:00:20.998Z"
-  },
-  {
-    "id": "1337a57f95d6",
-    "title": "「乃木坂配信中」にて「【パシフィック・リーグに連れてって！】乃木坂野球部が京セラドーム大阪にいってみた！【黒見の声出し】」を公開！",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/102154",
-    "date": "2026-08-05",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46の公式YouTubeチャンネル「乃木坂配信中」で、乃木坂野球部が京セラドーム大阪を訪れる動画が公開されました。黒見さんの声出しにも注目です。",
-    "bullets": [
-      "乃木坂野球部が京セラドーム大阪を訪問",
-      "黒見さんの声出しシーンあり",
-      "公式YouTubeチャンネル「乃木坂配信中」で視聴可能"
-    ],
-    "tags": [
-      "#SNS更新",
-      "#継続ウォッチ"
-    ],
-    "fetchedAt": "2026-08-05T22:06:38.162Z"
-  },
-  {
-    "id": "bb25b1d99acd",
-    "title": "【オフィシャルグッズ販売のお知らせ】「真夏の全国ツアー2026」福岡公演＠マリンメッセ福岡A館",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/102151",
-    "date": "2026-08-05",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "「真夏の全国ツアー2026」福岡公演のオフィシャルグッズ販売詳細が発表されました。マリンメッセ福岡A館での販売情報が公開されていますので、参加予定の方はご確認ください。",
-    "bullets": [
-      "「真夏の全国ツアー2026」福岡公演のグッズ販売",
-      "マリンメッセ福岡A館で実施",
-      "販売時間やラインナップを確認"
-    ],
-    "tags": [
-      "#グッズ",
-      "#ライブ"
-    ],
-    "fetchedAt": "2026-08-05T22:06:38.162Z"
-  },
-  {
-    "id": "fa54512d707c",
-    "title": "「ひなたフェス対策本部」にてブログを更新！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00874",
-    "date": "2026-08-05",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46の「ひなたフェス対策本部」ブログが更新されました。フェスに関する最新情報やメンバーの意気込みなどが掲載されている可能性がありますので、ぜひチェックしてください。",
-    "bullets": [
-      "「ひなたフェス対策本部」ブログが更新",
-      "フェスに関する最新情報が掲載",
-      "メンバーの意気込みなども期待"
-    ],
-    "tags": [
-      "#ブログ更新",
-      "#ライブ"
-    ],
-    "fetchedAt": "2026-08-05T22:06:38.162Z"
-  },
-  {
-    "id": "3df7f9cef792",
-    "title": "日向坂46「三期生 LIVE」メンバーフラッグの掲出に関しまして",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00873",
-    "date": "2026-08-05",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46「三期生 LIVE」におけるメンバーフラッグの掲出に関する詳細が発表されました。ファンの方々がフラッグを掲げる際のルールや場所についてご確認ください。",
-    "bullets": [
-      "日向坂46「三期生 LIVE」のメンバーフラッグ掲出について",
-      "掲出ルールや場所の詳細が公開",
-      "ライブ参加者は要確認"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-08-05T22:06:38.162Z"
-  },
-  {
-    "id": "184642a17d2f",
-    "title": "「ひなたフェス2026」宮崎交通とのコラボレーションと臨時便の詳細決定！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00872",
-    "date": "2026-08-05",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "「ひなたフェス2026」にて、宮崎交通とのコラボレーションが決定し、臨時便の詳細も発表されました。会場へのアクセスが便利になりますので、参加される方はご確認ください。",
-    "bullets": [
-      "「ひなたフェス2026」と宮崎交通がコラボ",
-      "会場への臨時便運行が決定",
-      "アクセス情報が詳細に公開"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-08-05T22:06:38.162Z"
-  },
-  {
-    "id": "7bf96cc0d617",
-    "title": "日向坂46「三期生 LIVE」全公演チケット完売につき、LIVEの生配信実施が決定！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/E00871",
-    "date": "2026-08-05",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46の「三期生 LIVE」全公演チケットが完売したため、ファンの皆様からの熱い要望に応え、ライブの生配信が決定しました。会場に来られない方も、ぜひオンラインでライブを楽しんでください。",
-    "bullets": [
-      "日向坂46「三期生 LIVE」全公演チケット完売",
-      "チケット完売を受け、ライブ生配信が決定"
-    ],
-    "tags": [
-      "#ライブ",
-      "#チケット",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-08-05T22:06:53.883Z"
-  },
-  {
-    "id": "461c0174a126",
-    "title": "8月7日(金)21:00～ABEMA「カンニング竹山のイチバン研究所」に竹内希来里が出演！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/M02764",
-    "date": "2026-08-05",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "8月7日(金)21:00からABEMAで放送される「カンニング竹山のイチバン研究所」に、日向坂46の竹内希来里さんが出演します。ぜひご覧ください。",
-    "bullets": [
-      "竹内希来里がABEMA「カンニング竹山のイチバン研究所」に出演",
-      "放送は8月7日(金)21:00から"
-    ],
-    "tags": [
-      "#TV出演"
-    ],
-    "fetchedAt": "2026-08-05T22:06:53.883Z"
   }
 ]
