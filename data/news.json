@@ -1,5 +1,147 @@
 [
   {
+    "id": "cd5a7ae761f5",
+    "title": "乃木坂三昧",
+    "url": "https://www.nogizaka46.com/s/n46/diary/detail/104810",
+    "date": "2026-09-01",
+    "group": "nogizaka46",
+    "memberId": "endo-sakura",
+    "memberName": "遠藤さくら",
+    "source": "blog",
+    "summary": "遠藤さくらさんが乃木坂46の夏ツアー完走を報告し、グループへの深い愛情と感謝を綴っています。坂道合同オーディション開催に触れ、自身の加入時の思い出も振り返っています。",
+    "bullets": [
+      "乃木坂46夏ツアーが無事に完走したことを報告。",
+      "乃木坂46への深い愛情と、ファンやメンバーへの感謝を表明。",
+      "坂道合同オーディション（7期生）開催に触れ、自身の加入時の思い出を回顧。"
+    ],
+    "tags": [
+      "#ブログ更新",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-01T22:55:12.869Z"
+  },
+  {
+    "id": "0449ae9f6892",
+    "title": "42ndシングル『是非に及ばず』発売記念オンラインミート＆グリート（個別トーク会）第13次～第16次応募受付と以降受付終了のお知らせ",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102223",
+    "date": "2026-09-01",
+    "group": "nogizaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "乃木坂46の42ndシングル『是非に及ばず』のオンラインミート＆グリートについて、第13次から第16次の応募受付が開始され、以降の受付は終了することが発表されました。",
+    "bullets": [
+      "42ndシングル『是非に及ばず』のオンラインミート＆グリート情報。",
+      "第13次～第16次応募受付が開始。",
+      "以降の応募受付は終了。"
+    ],
+    "tags": [
+      "#握手会",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-01T22:55:12.869Z"
+  },
+  {
+    "id": "128b3f5045c7",
+    "title": "リリース\n      2026.09.01\n    \n    9月8日(火)19:00より『5th YEAR ANNIVERSARY LIVE at MUFG ",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/R00612",
+    "date": "2026-09-01",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46の『5th YEAR ANNIVERSARY LIVE at MUFG』が、9月8日(火)19:00より開催されることが発表されました。ファンは詳細を確認し、視聴準備を進めましょう。",
+    "bullets": [
+      "櫻坂46『5th YEAR ANNIVERSARY LIVE at MUFG』の開催情報。",
+      "開催日時は9月8日(火)19:00から。"
+    ],
+    "tags": [
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-01T22:55:12.869Z"
+  },
+  {
+    "id": "9f83d69a051d",
+    "title": "「日向坂で会いましょう」メンバー考案グッズくじ 受付開始のお知らせ",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/G00236",
+    "date": "2026-09-01",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の冠番組「日向坂で会いましょう」でメンバーが考案したオリジナルグッズのくじ引き企画が始まりました。ファンは受付期間中に詳細を確認し、ぜひ参加してみてください。",
+    "bullets": [
+      "「日向坂で会いましょう」メンバー考案グッズくじの受付が開始。",
+      "オリジナルグッズを手に入れるチャンス。"
+    ],
+    "tags": [
+      "#グッズ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-01T22:55:12.869Z"
+  },
+  {
+    "id": "0a7ecb9f748c",
+    "title": "18thシングル『イチャイチャ虫』発売記念  forTUNE meets オンラインミート＆グリート（個別トーク会）第4次～第6次応募受付決定!!",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/R00577",
+    "date": "2026-09-01",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の18thシングル『イチャイチャ虫』発売を記念したオンラインミート＆グリートの第4次から第6次応募受付が決定しました。ファンは詳細を確認し、忘れずに応募しましょう。",
+    "bullets": [
+      "18thシングル『イチャイチャ虫』発売記念オンラインミート＆グリート情報。",
+      "第4次～第6次応募受付が決定。"
+    ],
+    "tags": [
+      "#握手会",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-01T22:55:12.869Z"
+  },
+  {
+    "id": "e8aa7a7a4e0a",
+    "title": "本日9月1日(火)24:31〜MBS「ライバルたちがめっちゃ褒めてくる」に片山紗希、金村美玖、小坂菜緒、鶴崎仁香、平尾帆夏、渡辺莉奈が出演！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/M02796",
+    "date": "2026-09-01",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "本日9月1日(火)24:31よりMBSで放送される「ライバルたちがめっちゃ褒めてくる」に、日向坂46から片山紗希さん、金村美玖さん、小坂菜緒さん、鶴崎仁香さん、平尾帆夏さん、渡辺莉奈さんの6名が出演します。ぜひご覧ください。",
+    "bullets": [
+      "MBS「ライバルたちがめっちゃ褒めてくる」に日向坂46メンバーが出演",
+      "出演メンバーは片山紗希、金村美玖、小坂菜緒、鶴崎仁香、平尾帆夏、渡辺莉奈",
+      "放送は9月1日(火)24:31から"
+    ],
+    "tags": [
+      "#TV出演"
+    ],
+    "fetchedAt": "2026-09-01T22:55:28.529Z"
+  },
+  {
+    "id": "9bda0c98ea4f",
+    "title": "18thシングル『イチャイチャ虫』のソロアーティスト写真を更新！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/R00580",
+    "date": "2026-09-01",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "18thシングル『イチャイチャ虫』のソロアーティスト写真が更新されました。最新のビジュアルで、メンバーそれぞれの魅力が詰まった写真となっていますので、ぜひチェックしてください。",
+    "bullets": [
+      "18thシングル『イチャイチャ虫』のソロアーティスト写真が更新",
+      "最新のメンバービジュアルを公開"
+    ],
+    "tags": [
+      "#新曲",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-01T22:55:28.529Z"
+  },
+  {
     "id": "62ded1fffa3e",
     "title": "9月3日(木)16:50～放送のMRT宮崎放送「Check！」に上村ひなの・髙橋未来虹が生出演！",
     "url": "https://www.hinatazaka46.com/s/official/news/detail/M02794",
