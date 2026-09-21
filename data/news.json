@@ -1,5 +1,107 @@
 [
   {
+    "id": "0c3da038a7c6",
+    "title": "遠藤さくらが「ヤンシナ脚本家応援プロジェクト by SUNTORY『きんつくろい -金繕い-』」に出演決定！！",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102264",
+    "date": "2026-09-22",
+    "group": "nogizaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "乃木坂46の遠藤さくらさんが、SUNTORYの「ヤンシナ脚本家応援プロジェクト」によるドラマ『きんつくろい -金繕い-』に出演することが決定しました。ファン必見の出演情報です。",
+    "bullets": [
+      "遠藤さくらさんがドラマ『きんつくろい -金繕い-』に出演します。",
+      "SUNTORYの「ヤンシナ脚本家応援プロジェクト」の一環です。"
+    ],
+    "tags": [
+      "#TV出演",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-21T23:44:56.316Z"
+  },
+  {
+    "id": "8f13f096e588",
+    "title": "【のぎ動画】「33rdSG アンダーライブ」 配信開始！",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102263",
+    "date": "2026-09-21",
+    "group": "nogizaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "乃木坂46の「33rdSG アンダーライブ」が、公式動画サービス「のぎ動画」にて配信開始されました。ライブの熱気を自宅で楽しめますので、ぜひチェックしてください。",
+    "bullets": [
+      "「33rdSG アンダーライブ」がのぎ動画で配信開始。",
+      "乃木坂46の公式動画サービスで視聴可能です。"
+    ],
+    "tags": [
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-21T23:44:56.316Z"
+  },
+  {
+    "id": "24f6df253e92",
+    "title": "イベント\n      2026.09.21\n    \n    櫻坂46「15th Single BACKS LIVE!!」、 公式チケット・トレードが9月22日",
+    "url": "https://sakurazaka46.com/s/s46/news/detail/E00686",
+    "date": "2026-09-21",
+    "group": "sakurazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "櫻坂46「15th Single BACKS LIVE!!」の公式チケット・トレードが、明日9月22日より開始されます。チケットをお探しの方はこの機会をお見逃しなく。",
+    "bullets": [
+      "櫻坂46「15th Single BACKS LIVE!!」のチケットトレードが開始。",
+      "9月22日から公式トレードが利用できます。"
+    ],
+    "tags": [
+      "#チケット",
+      "#ライブ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-21T23:44:56.316Z"
+  },
+  {
+    "id": "aac1e38ebb1c",
+    "title": "18thシングル『イチャイチャ虫』発売記念・各CDショップチェーンにてコラボレーション展開決定！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/R00590",
+    "date": "2026-09-21",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の18thシングル『イチャイチャ虫』の発売を記念して、全国のCDショップチェーンでコラボレーション展開が決定しました。限定特典や展示など、見どころ満載です。",
+    "bullets": [
+      "18thシングル『イチャイチャ虫』発売記念コラボ。",
+      "各CDショップチェーンで特別な展開が実施されます。"
+    ],
+    "tags": [
+      "#新曲",
+      "#グッズ",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-21T23:44:56.316Z"
+  },
+  {
+    "id": "b2909cc2b3f3",
+    "title": "9月23日(金)8:30〜TBSラジオ「パンサー向井の#ふらっと」に金村美玖が生出演！",
+    "url": "https://www.hinatazaka46.com/s/official/news/detail/M02814",
+    "date": "2026-09-21",
+    "group": "hinatazaka46",
+    "memberId": null,
+    "memberName": null,
+    "source": "news",
+    "summary": "日向坂46の金村美玖さんが、9月23日(金)午前8時30分からTBSラジオ「パンサー向井の#ふらっと」に生出演します。ぜひリアルタイムでチェックしてください。",
+    "bullets": [
+      "金村美玖さんがTBSラジオに生出演。",
+      "番組は「パンサー向井の#ふらっと」、9月23日(金)8:30からです。"
+    ],
+    "tags": [
+      "#TV出演",
+      "#お知らせ"
+    ],
+    "fetchedAt": "2026-09-21T23:44:56.316Z"
+  },
+  {
     "id": "d8a06bc234f7",
     "title": "「乃木坂工事中」の最新話「全国ツアー裏でも表でもこんなことありました2026 後編」をYouTubeにて公開！【乃木坂配信中】",
     "url": "https://www.nogizaka46.com/s/n46/news/detail/102262",
@@ -547,90 +649,5 @@
       "#お知らせ"
     ],
     "fetchedAt": "2026-09-17T23:18:03.724Z"
-  },
-  {
-    "id": "e0eef95597f6",
-    "title": "「42ndSGアンダーライブ」 祝花・プレゼントに関しまして",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/102249",
-    "date": "2026-09-16",
-    "group": "nogizaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "乃木坂46の「42ndSGアンダーライブ」に関して、祝花やプレゼントの受付に関する詳細が発表されました。ライブに参加されるファンの方は、事前に公式サイトで注意事項を確認し、ルールを守って準備をお願いします。",
-    "bullets": [
-      "42ndSGアンダーライブの祝花・プレゼントに関するお知らせです。",
-      "受付期間や送付先、注意事項が公式サイトに掲載されています。",
-      "ライブ参加前に必ず詳細を確認してください。"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-09-16T23:29:33.826Z"
-  },
-  {
-    "id": "0b2f0ceb71bf",
-    "title": "18thシングル『イチャイチャ虫』発売記念・パネル展示決定！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/R00588",
-    "date": "2026-09-16",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46の18thシングル『イチャイチャ虫』の発売を記念して、全国のCDショップでパネル展示の開催が決定しました。展示期間や実施店舗を確認し、ぜひ足を運んでメンバーの魅力を楽しんでください。",
-    "bullets": [
-      "18thシングル『イチャイチャ虫』発売記念のパネル展示が決定しました。",
-      "全国のCDショップで実施されます。",
-      "展示期間や店舗の詳細は公式サイトで確認できます。"
-    ],
-    "tags": [
-      "#新曲",
-      "#グッズ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-09-16T23:29:33.826Z"
-  },
-  {
-    "id": "a1105b1e57db",
-    "title": "9月18日(金)発売の「non-no」11月号 通常版の表紙・巻頭に小坂菜緒が登場！",
-    "url": "https://www.hinatazaka46.com/s/official/news/detail/M02810",
-    "date": "2026-09-16",
-    "group": "hinatazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "日向坂46の小坂菜緒さんが、9月18日(金)に発売される「non-no」11月号通常版の表紙と巻頭ページに登場します。彼女の魅力が詰まった内容ですので、ファンの方はぜひチェックしてください。",
-    "bullets": [
-      "小坂菜緒が「non-no」11月号通常版の表紙・巻頭に登場します。",
-      "発売日は9月18日(金)です。",
-      "ファン必見の撮り下ろし写真やインタビューが掲載されます。"
-    ],
-    "tags": [
-      "#写真集",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-09-16T23:29:33.826Z"
-  },
-  {
-    "id": "3b3ecf180a95",
-    "title": "イベント\n      2026.09.16\n    \n    櫻坂46「15th Single BACKS LIVE!!」 祝花・プレゼントに関しまして",
-    "url": "https://sakurazaka46.com/s/s46/news/detail/E00683",
-    "date": "2026-09-16",
-    "group": "sakurazaka46",
-    "memberId": null,
-    "memberName": null,
-    "source": "news",
-    "summary": "櫻坂46の「15th Single BACKS LIVE!!」における祝花やプレゼントの受付に関する詳細が発表されました。ライブに参加されるファンの方は、事前に公式サイトでガイドラインを確認し、ルールに従って準備をお願いします。",
-    "bullets": [
-      "櫻坂46「15th Single BACKS LIVE!!」の祝花・プレゼントについてです。",
-      "受付に関する詳細情報が公開されました。",
-      "公式サイトで注意事項を確認し、ルールを守って準備してください。"
-    ],
-    "tags": [
-      "#ライブ",
-      "#お知らせ"
-    ],
-    "fetchedAt": "2026-09-16T23:29:33.826Z"
   }
 ]
